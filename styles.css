@@ -11,18 +11,32 @@ body {
     color: #333;
 }
 
-/* Header Styles */
+/* Header and Logo Styles */
 header {
-    background-color: #003366;
+    background-color: #000;
     color: white;
+    padding: 0;
+}
+
+.logo-container {
     padding: 1rem;
+    text-align: center;
+    background-color: #000;
+}
+
+.logo {
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
 }
 
 .emergency-contact {
-    background-color: #ff4444;
+    background-color: #ff8c00;
     color: white;
     text-align: center;
     padding: 0.5rem;
+    border-bottom: 2px solid #fff;
 }
 
 .emergency-contact a {
@@ -31,11 +45,13 @@ header {
     font-weight: bold;
 }
 
+/* Navigation Styles */
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 nav ul {
@@ -48,6 +64,11 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #ff8c00;
 }
 
 /* Main Content Styles */
@@ -69,7 +90,7 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
-    color: #003366;
+    color: #000;
     margin-bottom: 1rem;
 }
 
@@ -82,10 +103,16 @@ a[href^="tel"] {
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+a[href="#quote"]:hover, 
+a[href^="tel"]:hover {
+    transform: scale(1.05);
 }
 
 a[href="#quote"] {
-    background-color: #003366;
+    background-color: #ff8c00;
     color: white;
 }
 
@@ -94,17 +121,50 @@ a[href^="tel"] {
     color: white;
 }
 
+/* Service Cards */
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.service-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
 /* Footer Styles */
 footer {
-    background-color: #003366;
+    background-color: #000;
     color: white;
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
 }
 
+footer a {
+    color: #ff8c00;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    .logo {
+        max-width: 250px;
+    }
+
     nav {
         flex-direction: column;
         text-align: center;
@@ -115,4 +175,55 @@ footer {
         gap: 1rem;
         margin-top: 1rem;
     }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Additional Branding Elements */
+.accent-text {
+    color: #ff8c00;
+}
+
+.section-divider {
+    height: 4px;
+    background: linear-gradient(to right, #000, #ff8c00);
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 800px;
+}
+
+/* Button and Interactive Elements */
+button {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e67e00;
+}
+
+/* Form Styles */
+input, 
+textarea, 
+select {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 5px rgba(255,140,0,0.3);
 }
