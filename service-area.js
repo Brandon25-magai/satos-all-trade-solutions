@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
         constructor() {
             // Center points for your service areas
             this.locations = {
-                lena: { lat: 42.3776, lng: -89.8226 },     // Lena, IL
-                madison: { lat: 43.0731, lng: -89.4012 }   // Madison, WI
+                lena: { lat: 42.3776, lng: -89.8226 },  // Lena, IL
+                madison: { lat: 43.0731, lng: -89.4012 }  // Madison, WI
             };
 
             this.initMap();
@@ -31,21 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         "featureType": "road",
                         "elementType": "geometry",
                         "stylers": [{ "color": "#38414e" }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{ "color": "#212a37" }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry",
-                        "stylers": [{ "color": "#746855" }]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry",
-                        "stylers": [{ "color": "#17263c" }]
                     }
                 ]
             });
@@ -55,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.addServiceCircle(map, this.locations.madison, '#ff8c00', 'Madison Service Area');
 
             // Add markers for main locations
-            this.addMarker(map, this.locations.lena, 'Sato\'s All Trade Solutions - Lena Headquarters');
+            this.addMarker(map, this.locations.lena, 'Sato\'s All Trade Solutions - Lena HQ');
             this.addMarker(map, this.locations.madison, 'Madison Service Area');
         }
 
@@ -140,19 +125,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (minDistance <= 25) {
                 result.innerHTML = `
                     <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-top: 10px;">
-                        <strong>✓ Great news!</strong> Your location is within our standard service area.
+                        <strong>Great news!</strong> You're in our standard service area.
                         <br>No additional travel fees apply.
                     </div>`;
             } else if (minDistance <= 50) {
                 result.innerHTML = `
                     <div style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; margin-top: 10px;">
-                        <strong>ℹ Location is in our extended service area.</strong>
+                        <strong>You're in our extended service area.</strong>
                         <br>Additional travel fee may apply. Please call for details.
                     </div>`;
             } else {
                 result.innerHTML = `
                     <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-top: 10px;">
-                        <strong>✕ Location is outside our current service area.</strong>
+                        <strong>Location is outside our service area.</strong>
                         <br>Please contact us to discuss special arrangements.
                     </div>`;
             }
