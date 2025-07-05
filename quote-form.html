@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Quote - Sato's All Trade Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Sato's All Trade Solutions - Home and Auto Expertise" class="logo">
+            </a>
+        </div>
+        <div class="emergency-contact">
+            <span>24/7 Emergency Services:</span>
+            <a href="tel:+16086360095">(608) 636-0095</a>
+        </div>
+    </header>
+
+    <main class="quote-form-container">
+        <section class="quote-form">
+            <h2>Request a Quote</h2>
+            <form id="quoteForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_CODE" method="POST">
+                <!-- Service Type Selection -->
+                <div class="form-group">
+                    <label for="serviceType">Type of Service Needed*</label>
+                    <select name="serviceType" id="serviceType" required>
+                        <option value="">Select Service Type</option>
+                        <option value="handyman">Handyman Services</option>
+                        <option value="automotive">Automotive Services</option>
+                        <option value="emergency">Emergency Service</option>
+                    </select>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="name">Your Name*</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone Number*</label>
+                    <input type="tel" id="phone" name="phone" required>
+
+                    <label for="location">Service Location*</label>
+                    <input type="text" id="location" name="location" placeholder="Address, City, State" required>
+                </div>
+
+                <!-- Project Details -->
+                <div class="form-group">
+                    <label for="description">Project Description*</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <button type="submit">Submit Quote Request</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact: (608) 636-0095 | Email: Brandon@satosalltradesolutions.com</p>
+        <p>Serving: Lena, IL | Madison, WI | Surrounding Areas</p>
+        <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
+    </footer>
+
+    <!-- This is where we connect the form handler script -->
+    <script src="form-handler.js"></script>
+</body>
+</html>
