@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('quoteForm');
 
     // Replace this with your actual Formspree code from Step 1
-    form.action = https://formspree.io/f/mrbkvbzb
+    <form id="quoteForm" action="https://formspree.io/f/mrbkvbzb" method="POST">
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
