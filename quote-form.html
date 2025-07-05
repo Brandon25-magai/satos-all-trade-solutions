@@ -7,30 +7,37 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header Section (like the hood of your car - where everything starts) -->
     <header>
         <div class="logo-container">
             <a href="index.html">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions - Home and Auto Expertise" class="logo">
+                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
             </a>
         </div>
+        <!-- Emergency Contact (like your quick-access tools) -->
         <div class="emergency-contact">
             <span>24/7 Emergency Services:</span>
-            <a href="tel:6086360095">(608) 636-0095</a>
+            <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
         </div>
+        <!-- Navigation (like your dashboard controls) -->
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="quote-form.html">Get Quote</a></li>
-                <li><a href="tel:6086360095">Emergency Service</a></li>
+                <li><a href="service-area.html">Service Areas</a></li>
+                <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Main Content (like the engine - where the main work happens) -->
     <main class="quote-form-container">
         <section class="quote-form">
             <h2>Request a Quote</h2>
+            <!-- Form (like a diagnostic system - collecting all the information) -->
             <form id="quoteForm" action="https://formspree.io/f/mrbkvbzb" method="POST">
-                <!-- Service Type Selection -->
+
+                <!-- Service Selection (like choosing what type of service the vehicle needs) -->
                 <div class="form-group">
                     <label for="serviceType">Type of Service Needed*</label>
                     <select name="serviceType" id="serviceType" required>
@@ -41,7 +48,7 @@
                     </select>
                 </div>
 
-                <!-- Contact Information -->
+                <!-- Contact Information (like the customer's information in your service system) -->
                 <div class="form-group">
                     <label for="name">Your Name*</label>
                     <input type="text" id="name" name="name" required>
@@ -56,22 +63,32 @@
                     <input type="text" id="location" name="location" placeholder="Address, City, State" required>
                 </div>
 
-                <!-- Project Details -->
+                <!-- Project Details (like the problem description in a work order) -->
                 <div class="form-group">
                     <label for="description">Project Description*</label>
                     <textarea id="description" name="description" rows="4" required></textarea>
                 </div>
 
+                <!-- Image Upload (like taking photos of the problem) -->
+                <div class="form-group">
+                    <label for="images">Upload Images (Optional)</label>
+                    <input type="file" id="images" name="images" accept="image/*" multiple>
+                    <div class="image-preview-container"></div>
+                    <small>Upload photos of the project/issue (Max 5 images)</small>
+                </div>
+
+                <!-- Submit Button (like starting the job) -->
                 <button type="submit" class="service-button">Submit Quote Request</button>
             </form>
         </section>
     </main>
 
+    <!-- Footer (like the undercarriage - supporting everything) -->
     <footer>
         <div class="footer-content">
             <div class="contact-info">
                 <h3>Contact Us</h3>
-                <p>Phone: <a href="tel:6086360095">(608) 636-0095</a></p>
+                <p>Phone: <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a></p>
                 <p>Email: <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
             </div>
             <div class="service-areas">
@@ -84,6 +101,8 @@
         </div>
     </footer>
 
+    <!-- Scripts (like the computer system that makes everything work) -->
     <script src="form-handler.js"></script>
+    <script src="form-response.js"></script>
 </body>
 </html>
