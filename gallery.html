@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header (Same as other pages for consistency) -->
     <header>
         <div class="logo-container">
             <a href="index.html">
@@ -30,20 +29,21 @@
     </header>
 
     <main class="gallery-container">
-        <!-- Gallery Filter Buttons (like choosing between car types) -->
+        <h2>Our Work</h2>
+
+        <!-- Gallery Filter Buttons -->
         <div class="gallery-filters">
             <button class="filter-btn active" data-filter="all">All Projects</button>
             <button class="filter-btn" data-filter="handyman">Handyman</button>
             <button class="filter-btn" data-filter="automotive">Automotive</button>
         </div>
 
-        <!-- Gallery Grid (like a showroom of your work) -->
+        <!-- Gallery Grid -->
         <div class="gallery-grid">
-            <!-- Sample Project Cards -->
+            <!-- Sample Project Cards - Replace images and descriptions with your actual work -->
             <div class="project-card" data-category="handyman">
                 <div class="project-image">
-                    <!-- You'll add your actual project images later -->
-                    <img src="project-placeholder.jpg" alt="Home Repair Project">
+                    <img src="placeholder-handyman.jpg" alt="Home Repair Project">
                 </div>
                 <div class="project-info">
                     <h3>Home Repair Project</h3>
@@ -53,7 +53,7 @@
 
             <div class="project-card" data-category="automotive">
                 <div class="project-image">
-                    <img src="project-placeholder.jpg" alt="Vehicle Diagnostic">
+                    <img src="placeholder-auto.jpg" alt="Vehicle Diagnostic">
                 </div>
                 <div class="project-info">
                     <h3>Vehicle Diagnostic</h3>
@@ -61,11 +61,15 @@
                 </div>
             </div>
 
-            <!-- More project cards will be added dynamically -->
+            <!-- Add more project cards here -->
+        </div>
+
+        <div class="gallery-note">
+            <p>These are examples of our work. Contact us to discuss your specific project needs.</p>
+            <a href="quote-form.html" class="cta-button">Request a Quote</a>
         </div>
     </main>
 
-    <!-- Footer (Same as other pages) -->
     <footer>
         <div class="footer-content">
             <div class="contact-info">
@@ -83,7 +87,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="gallery.js"></script>
 </body>
 </html>
