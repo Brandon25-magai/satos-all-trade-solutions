@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Areas - Sato's All Trade Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Add Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</head>
+<body>
+    <header>
+        <!-- Same header as other pages -->
+    </header>
+
+    <main class="service-area-container">
+        <section class="service-area">
+            <h2>Our Service Areas</h2>
+
+            <div class="location-checker">
+                <h3>Check If We Service Your Area</h3>
+                <div class="location-input">
+                    <input type="text" id="locationInput" placeholder="Enter your address">
+                    <div id="availabilityResult"></div>
+                </div>
+            </div>
+
+            <div id="serviceAreaMap"></div>
+
+            <div class="service-details">
+                <div class="area-card">
+                    <h3>Standard Service Area</h3>
+                    <ul>
+                        <li>25-mile radius from Lena, IL</li>
+                        <li>Madison metropolitan area</li>
+                        <li>No additional travel fee</li>
+                    </ul>
+                </div>
+
+                <div class="area-card">
+                    <h3>Extended Service Area</h3>
+                    <ul>
+                        <li>Up to 50 miles from service centers</li>
+                        <li>Travel fee may apply</li>
+                        <li>Subject to availability</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Same footer as other pages -->
+    </footer>
+
+    <script src="service-area.js"></script>
+</body>
+</html>
