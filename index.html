@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sato's All Trade Solutions - Handyman & Auto Repair</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sato's All Trade Solutions - Handyman & Auto Repair Services</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
+        <div class="logo-container">
+            <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
+        </div>
+        <div class="emergency-contact">
+            <span>24/7 Emergency Services:</span>
+            <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
+        </div>
         <nav>
-            <a href="index.html" class="logo-link">
-                <!-- If you uploaded a logo, it will appear here. -->
-                <img src="images/logo.png" alt="Sato's All Trade Solutions Logo" class="logo">
-                <span class="business-name">Sato's All Trade Solutions</span>
-            </a>
             <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="quote-form.html">Get Quote</a></li>
+                <li><a href="service-area.html">Service Areas</a></li>
+                <li><a href="gallery.html">Our Work</a></li>
+                <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
             </ul>
         </nav>
     </header>
@@ -26,22 +30,56 @@
         <section class="hero">
             <h1>Your Trusted Handyman & Auto Repair Expert</h1>
             <p>Serving Lena, IL, Madison, and surrounding areas.</p>
-            <a href="#contact" class="cta-button">Get a Free Quote</a>
+            <div class="cta-buttons">
+                <a href="quote-form.html" class="cta-button">Get a Free Quote</a>
+                <a href="tel:6086360095" class="cta-button emergency">Emergency Service</a>
+            </div>
         </section>
 
-        <!-- We will add more sections here later -->
-        <section id="services">
-            <!-- Services content will go here -->
-        </section>
+        <section class="services">
+            <div class="service-card handyman">
+                <h2>Handyman Services</h2>
+                <ul>
+                    <li>General Home Repairs</li>
+                    <li>Drywall & Painting</li>
+                    <li>Property Maintenance</li>
+                    <li>Light Plumbing & Electrical</li>
+                    <li>Door & Window Repairs</li>
+                    <li>Emergency Repairs</li>
+                </ul>
+                <a href="quote-form.html" class="service-button">Get Quote</a>
+            </div>
 
-        <section id="contact">
-            <!-- Contact form will go here -->
+            <div class="service-card automotive">
+                <h2>Automotive Services</h2>
+                <ul>
+                    <li>Vehicle Diagnostics</li>
+                    <li>Brake Services</li>
+                    <li>Pre-Purchase Inspections</li>
+                    <li>Brake Controller Installation</li>
+                    <li>Seasonal Vehicle Checks</li>
+                    <li>Emergency Services</li>
+                </ul>
+                <a href="quote-form.html" class="service-button">Get Quote</a>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Sato's All Trade Solutions LLC. All Rights Reserved.</p>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Phone: <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a></p>
+                <p>Email: <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
+            </div>
+            <div class="service-areas">
+                <h3>Service Areas</h3>
+                <p>Lena, IL | Madison, WI | Surrounding Areas</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sato's All Trade Solutions LLC. All Rights Reserved.</p>
+        </div>
     </footer>
-
 </body>
 </html>
