@@ -361,15 +361,15 @@
             font-weight: 600;
         }
 
-        /* Testimonials Section */
-        .testimonials-section {
+        /* Contact Form Section */
+        .contact-section {
             padding: 100px 5%;
             background: white;
             position: relative;
             overflow: hidden;
         }
 
-        .testimonials-section::before {
+        .contact-section::before {
             content: "";
             position: absolute;
             top: 50%;
@@ -383,166 +383,163 @@
             transform: translate(-50%, -50%);
         }
 
-        .testimonials-container {
+        .contact-container {
             position: relative;
             z-index: 2;
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
 
-        .testimonial-card {
-            background: rgba(248, 249, 250, 0.8);
-            padding: 40px 30px;
+        .contact-info {
+            background: var(--primary);
             border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(10,74,111,0.1);
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .testimonial-header {
+            padding: 40px;
+            color: white;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        .contact-details {
+            margin: 30px 0;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
             margin-bottom: 25px;
         }
 
-        .testimonial-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-right: 20px;
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 5px;
         }
 
-        .testimonial-author h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            color: var(--primary);
+        .contact-text h4 {
+            font-size: 1.3rem;
             margin-bottom: 5px;
         }
 
-        .testimonial-author p {
-            color: var(--secondary);
-            font-style: italic;
-        }
-
-        .testimonial-content {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .testimonial-content::before {
-            content: """;
-            position: absolute;
-            left: 0;
-            top: -20px;
-            font-size: 4rem;
-            color: rgba(10,74,111,0.1);
-            font-family: serif;
-            line-height: 1;
-        }
-
-        .testimonial-rating {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-top: 20px;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 5%;
-            background: linear-gradient(rgba(10, 74, 111, 0.9), rgba(10, 74, 111, 0.95)), 
-                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80') no-repeat center/cover;
-            text-align: center;
+        .contact-text a {
             color: white;
-            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .contact-text a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
         }
 
-        .cta-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
+        .contact-form {
+            background: rgba(248, 249, 250, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
             margin-bottom: 25px;
         }
 
-        .cta-content p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
         }
 
-        .cta-buttons {
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 74, 111, 0.1);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
-            gap: 25px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .cta-button {
-            display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: var(--transition);
-            border: 2px solid transparent;
-            min-width: 240px;
-            justify-content: center;
             font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(10,74,111,0.3);
         }
 
-        .cta-button:not(.emergency) {
-            background: var(--secondary);
-            color: white;
-        }
-
-        .cta-button:not(.emergency):hover {
-            background: #d35400;
+        .submit-btn:hover {
+            background: #083a5a;
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+            box-shadow: 0 8px 25px rgba(10,74,111,0.4);
         }
 
-        .cta-button.emergency {
-            background: transparent;
-            color: white;
-            border-color: white;
+        .form-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
         }
 
-        .cta-button.emergency:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-5px);
+        .form-status.success {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+            display: block;
+        }
+
+        .form-status.error {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            display: block;
         }
 
         /* Enhanced Footer with Logo Integration */
@@ -629,12 +626,12 @@
             line-height: 1.4;
         }
 
-        .contact-info, .service-areas {
+        .contact-info-footer, .service-areas {
             flex: 1;
             min-width: 280px;
         }
 
-        .contact-info h3, .service-areas h3 {
+        .contact-info-footer h3, .service-areas h3 {
             font-size: 1.6rem;
             margin-bottom: 25px;
             color: var(--secondary);
@@ -643,7 +640,7 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        .contact-info h3::after, .service-areas h3::after {
+        .contact-info-footer h3::after, .service-areas h3::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -653,12 +650,23 @@
             background: var(--secondary);
         }
 
-        .contact-info p, .service-areas p {
+        .contact-info-footer p, .service-areas p {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
             font-size: 1.1rem;
+        }
+
+        .contact-info-footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info-footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
         }
 
         .footer-emergency {
@@ -754,8 +762,8 @@
                 justify-content: center;
             }
             
-            .cta-content h2 {
-                font-size: 2.2rem;
+            .contact-container {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -781,24 +789,19 @@
                 font-size: 2.2rem;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
             .footer-content {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
             
-            .contact-info h3::after, 
+            .contact-info-footer h3::after, 
             .service-areas h3::after {
                 left: 50%;
                 transform: translateX(-50%);
             }
             
-            .contact-info p, 
+            .contact-info-footer p, 
             .service-areas p {
                 justify-content: center;
             }
@@ -818,6 +821,10 @@
             
             .logo-text h1 {
                 font-size: 1.7rem;
+            }
+            
+            .contact-form {
+                padding: 20px;
             }
         }
     </style>
@@ -936,78 +943,88 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="testimonials-container">
-            <div class="section-title">
-                <h2>Customer Testimonials</h2>
-                <p class="tagline">What Our Clients Say About Our Work</p>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">JS</div>
-                        <div class="testimonial-author">
-                            <h3>John Smith</h3>
-                            <p>Homeowner in Lena, IL</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <p>Brandon completely transformed our outdated bathroom. His attention to detail was incredible - from the tile work to the plumbing fixtures, everything was perfect. He finished ahead of schedule and the quality exceeded our expectations.</p>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                </div>
+    <!-- Contact Section with Formspree Integration -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p>Have questions about our services or want to schedule an appointment? Get in touch with us today!</p>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">MR</div>
-                        <div class="testimonial-author">
-                            <h3>Maria Rodriguez</h3>
-                            <p>Business Owner in Madison, WI</p>
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <a href="tel:6086360095">(608) 636-0095</a>
                         </div>
                     </div>
-                    <div class="testimonial-content">
-                        <p>Sato's has been maintaining our company fleet for over a year now. They're incredibly reliable and have saved us thousands in repair costs. When our delivery van broke down, they had it fixed within 24 hours. Their emergency service is a lifesaver!</p>
-                    </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">TP</div>
-                        <div class="testimonial-author">
-                            <h3>Thomas Peterson</h3>
-                            <p>Property Manager in Freeport, IL</p>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a>
                         </div>
                     </div>
-                    <div class="testimonial-content">
-                        <p>I manage 15 rental properties and Sato's is my go-to for all maintenance and repair work. They handle everything from plumbing emergencies to appliance installation. Their team is professional, punctual, and their work is always top-notch.</p>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-text">
+                            <h4>Emergency Service</h4>
+                            <a href="tel:6086360095">Available 24/7</a>
+                        </div>
                     </div>
-                    <div class="testimonial-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-text">
+                            <h4>Service Areas</h4>
+                            <p>Lena, IL | Madison, WI | Surrounding Areas</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2>Ready to Transform Your Space or Vehicle?</h2>
-            <p>Contact us today for a free consultation and quote</p>
-            <div class="cta-buttons">
-                <a href="quote-form.html" class="cta-button">
-                    <i class="fas fa-file-invoice-dollar"></i> Get a Free Quote
-                </a>
-                <a href="tel:6086360095" class="cta-button emergency">
-                    <i class="fas fa-phone-alt"></i> Call Now: (608) 636-0095
-                </a>
+            
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm" action="https://formspree.io/f/mrbkvbzb" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="handyman">Handyman Services</option>
+                            <option value="auto">Auto Repair</option>
+                            <option value="emergency">Emergency Service</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                    
+                    <div class="form-status" id="formStatus"></div>
+                </form>
             </div>
         </div>
     </section>
@@ -1027,9 +1044,9 @@
                 <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
             </div>
             
-            <div class="contact-info">
+            <div class="contact-info-footer">
                 <h3>Contact Us</h3>
-                <p><i class="fas fa-phone"></i> <a href="tel:6086360095" class="footer-emergency-link">(608) 636-0095</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:6086360095">(608) 636-0095</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
                 <p><i class="fas fa-clock"></i> 24/7 Emergency Service</p>
                 
@@ -1085,6 +1102,44 @@
             // Add current year to footer
             const currentYear = new Date().getFullYear();
             document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
+            
+            // Formspree Form Handling
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                formStatus.textContent = "Sending your message...";
+                formStatus.className = "form-status";
+                formStatus.style.display = "block";
+                
+                // Get form data
+                const formData = new FormData(contactForm);
+                
+                // Send form data to Formspree
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        formStatus.textContent = "Thank you! Your message has been sent successfully.";
+                        formStatus.className = "form-status success";
+                        contactForm.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    formStatus.textContent = "Oops! There was a problem sending your message. Please try again or call us directly.";
+                    formStatus.className = "form-status error";
+                });
+            });
         });
     </script>
 </body>
