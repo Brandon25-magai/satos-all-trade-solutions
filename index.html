@@ -33,58 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Professional Emergency Banner */
-        .emergency-banner {
-            background: linear-gradient(135deg, var(--emergency) 0%, #8B0000 100%);
-            color: white;
-            padding: 14px 0;
-            position: relative;
-            z-index: 100;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .emergency-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .emergency-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .emergency-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 700;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .emergency-link:hover {
-            background: rgba(0,0,0,0.3);
-            transform: translateY(-2px);
-        }
-
         /* Professional Header Banner */
         .header-banner {
             background: linear-gradient(135deg, white 0%, #f5f7fa 100%);
@@ -203,6 +151,16 @@
             box-shadow: 0 5px 15px rgba(10,74,111,0.2);
         }
 
+        nav a.emergency-link {
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--emergency);
+        }
+
+        nav a.emergency-link:hover {
+            background: var(--emergency);
+            color: white;
+        }
+
         nav a i {
             font-size: 1.1rem;
         }
@@ -309,14 +267,15 @@
         .why-choose-us::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 80%;
             background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
-            background-size: 40%;
-            opacity: 0.08;
+            background-size: contain;
+            opacity: 0.07;
             z-index: 1;
+            transform: translate(-50%, -50%);
         }
 
         .section-container {
@@ -360,7 +319,7 @@
         }
 
         .benefit-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             padding: 30px;
             border-radius: 10px;
             box-shadow: var(--shadow);
@@ -405,14 +364,14 @@
             content: "";
             position: absolute;
             top: 50%;
-            right: -100px;
-            width: 300px;
-            height: 300px;
+            left: 50%;
+            width: 60%;
+            height: 80%;
             background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
             background-size: contain;
-            opacity: 0.05;
+            opacity: 0.07;
             z-index: 1;
-            transform: translateY(-50%);
+            transform: translate(-50%, -50%);
         }
 
         .services-grid {
@@ -426,7 +385,7 @@
         }
 
         .service-card {
-            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            background: rgba(248, 249, 250, 0.8);
             padding: 40px 30px;
             border-radius: 15px;
             box-shadow: var(--shadow);
@@ -601,10 +560,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0.05;
+            opacity: 0.07;
             z-index: 1;
-            max-width: 500px;
-            width: 100%;
+            max-width: 600px;
+            width: 60%;
             text-align: center;
         }
 
@@ -661,6 +620,17 @@
             line-height: 1.4;
         }
 
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-top: 20px;
+            color: var(--gold);
+            font-weight: 600;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
         .contact-info, .service-areas {
             flex: 1;
             min-width: 280px;
@@ -702,6 +672,8 @@
             border-radius: 30px;
             margin-top: 15px;
             border: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         .footer-emergency-link {
@@ -732,6 +704,8 @@
             margin: 0 auto;
             position: relative;
             z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
         }
 
         .social-links {
@@ -774,12 +748,6 @@
                 gap: 25px;
             }
             
-            .emergency-container {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -789,7 +757,7 @@
             }
             
             .services-section::before {
-                display: none;
+                width: 80%;
             }
         }
 
@@ -855,22 +823,14 @@
             .logo-text h1 {
                 font-size: 1.7rem;
             }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Professional Emergency Banner -->
-    <div class="emergency-banner">
-        <div class="emergency-container">
-            <div class="emergency-content">
-                <span>24/7 Emergency Services:</span>
-                <a href="tel:6086360095" class="emergency-link">
-                    <i class="fas fa-phone-alt"></i> (608) 636-0095
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- Professional Header Banner -->
     <div class="header-banner">
         <div class="header-container">
@@ -913,6 +873,7 @@
         <div class="section-container">
             <div class="section-title">
                 <h2>Why Choose Us</h2>
+                <p class="tagline">Precision, Care, and Expertise in Every Repair</p>
             </div>
             
             <div class="benefits-grid">
@@ -954,7 +915,7 @@
         <div class="section-container">
             <div class="section-title">
                 <h2>Our Professional Services</h2>
-                <p>Quality solutions for all your handyman and automotive needs</p>
+                <p class="tagline">Reliable Repairs for Your Home Haven and Journey</p>
             </div>
             
             <div class="services-grid">
@@ -982,7 +943,7 @@
                     <h2>Automotive Services</h2>
                     <ul>
                         <li><i class="fas fa-car-crash"></i> Vehicle Diagnostics</li>
-                        <li><i class="fas fa-car-brake"></i> Brake Services</li>
+                        <li><i class="fas fa-stop-circle"></i> Brake Services</li>
                         <li><i class="fas fa-search"></i> Pre-Purchase Inspections</li>
                         <li><i class="fas fa-trailer"></i> Brake Controller Installation</li>
                         <li><i class="fas fa-snowflake"></i> Seasonal Vehicle Checks</li>
@@ -1006,7 +967,8 @@
                 <div class="footer-logo">
                     <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
                 </div>
-                <div class="slogan">One Call Fixes It All!</div>
+                <div class="slogan">Precision, Care, and Expertise in Every Repair</div>
+                <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
             </div>
             
             <div class="contact-info">
@@ -1023,8 +985,8 @@
             
             <div class="service-areas">
                 <h3>Service Areas</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Lena, IL | Madison, WI | Surrounding Areas</p>
                 <div class="area-badge">Serving Northwest Illinois & Southern Wisconsin</div>
+                <p class="tagline" style="margin-top: 25px; color: var(--gold);">Reliable Repairs for Your Home Haven and Journey</p>
             </div>
         </div>
         
