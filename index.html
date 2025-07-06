@@ -393,10 +393,26 @@
             color: var(--dark);
         }
 
-        /* Services Section */
+        /* Services Section with Enhanced Character */
         .services-section {
             padding: 100px 5%;
             background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.05;
+            z-index: 1;
+            transform: translateY(-50%);
         }
 
         .services-grid {
@@ -405,6 +421,8 @@
             gap: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card {
@@ -413,9 +431,9 @@
             border-radius: 15px;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border-top: 5px solid;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(10,74,111,0.1);
         }
 
         .service-card:hover {
@@ -424,11 +442,28 @@
         }
 
         .service-card.handyman {
-            border-color: var(--primary);
+            border-top: 5px solid var(--primary);
         }
 
         .service-card.automotive {
-            border-color: #e74c3c;
+            border-top: 5px solid #e74c3c;
+        }
+
+        .service-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
         }
 
         .service-icon {
@@ -441,14 +476,18 @@
             font-size: 2.3rem;
             margin: 0 auto 25px;
             color: white;
+            position: relative;
+            z-index: 2;
         }
 
         .service-card.handyman .service-icon {
             background: var(--primary);
+            box-shadow: 0 5px 15px rgba(10,74,111,0.3);
         }
 
         .service-card.automotive .service-icon {
             background: #e74c3c;
+            box-shadow: 0 5px 15px rgba(231,76,60,0.3);
         }
 
         .service-card h2 {
@@ -457,6 +496,18 @@
             margin-bottom: 30px;
             font-size: 1.8rem;
             font-family: 'Montserrat', sans-serif;
+            position: relative;
+        }
+
+        .service-card h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
         }
 
         .service-card ul {
@@ -471,6 +522,20 @@
             align-items: center;
             gap: 12px;
             font-size: 1.1rem;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .service-card li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
         }
 
         .service-card li i {
@@ -494,6 +559,21 @@
             cursor: pointer;
             width: 100%;
             font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
         }
 
         .service-button:hover {
@@ -502,13 +582,35 @@
             box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
         }
 
-        /* Footer */
+        .service-button:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Footer with Logo Integration */
         footer {
-            background: var(--dark);
+            background: linear-gradient(to right, var(--dark), #1a2a3a);
             color: white;
             padding: 100px 5% 40px;
             margin-top: 80px;
             clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            position: relative;
+        }
+
+        .footer-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+            z-index: 1;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer-bg img {
+            max-width: 100%;
+            height: auto;
         }
 
         .footer-content {
@@ -518,28 +620,45 @@
             margin-bottom: 40px;
             max-width: 1300px;
             margin: 50px auto 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .footer-logo {
-            flex: 1;
-            min-width: 300px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 10px;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .footer-logo img {
-            max-width: 180px;
-            margin-bottom: 20px;
-            background: white;
-            padding: 12px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .slogan {
             font-style: italic;
             color: var(--secondary);
             font-weight: 500;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-top: 15px;
+            line-height: 1.4;
         }
 
         .contact-info, .service-areas {
@@ -574,6 +693,23 @@
             font-size: 1.1rem;
         }
 
+        .footer-emergency {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(192, 57, 43, 0.3);
+            border-radius: 30px;
+            margin-top: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-emergency-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
         .area-badge {
             display: inline-block;
             background: var(--primary);
@@ -594,6 +730,8 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             max-width: 1300px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .social-links {
@@ -648,6 +786,10 @@
             
             nav ul {
                 justify-content: center;
+            }
+            
+            .services-section::before {
+                display: none;
             }
         }
 
@@ -758,7 +900,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Professional Handyman & Auto Repair Services</h1>
-            <p>Serving Northwest Illinois & Southern Wisconsin with pride since 2003</p>
+            <p>Providing Expert Services to Northwest Illinois & Southern Wisconsin with Dedication and Care</p>
             <div class="cta-buttons">
                 <a href="quote-form.html" class="cta-button"><i class="fas fa-file-invoice-dollar"></i> Get a Free Quote</a>
                 <a href="tel:6086360095" class="cta-button emergency"><i class="fas fa-phone-alt"></i> Emergency Service</a>
@@ -776,7 +918,7 @@
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <h3><i class="fas fa-medal"></i> Extensive Experience</h3>
-                    <p>With a background in apartment maintenance and management of a local semi shop, Brandon Sato brings a wealth of knowledge and hands-on expertise to every project. From maintaining complex machinery to handling fleet services, we have the skills you need.</p>
+                    <p>Brandon Sato leverages a rich background in apartment maintenance and hands-on experience with semi shops, offering a depth of knowledge and practical expertise. Whether it's maintaining intricate machinery, managing fleet services, or executing meticulous home improvement projects, we possess the essential skills to meet your every requirement effectively.</p>
                 </div>
                 
                 <div class="benefit-card">
@@ -822,12 +964,13 @@
                     </div>
                     <h2>Handyman Services</h2>
                     <ul>
-                        <li><i class="fas fa-check"></i> General Home Repairs</li>
-                        <li><i class="fas fa-check"></i> Drywall & Painting</li>
-                        <li><i class="fas fa-check"></i> Property Maintenance</li>
-                        <li><i class="fas fa-check"></i> Light Plumbing & Electrical</li>
-                        <li><i class="fas fa-check"></i> Door & Window Repairs</li>
-                        <li><i class="fas fa-check"></i> Emergency Repairs</li>
+                        <li><i class="fas fa-wrench"></i> General Home Repairs</li>
+                        <li><i class="fas fa-paint-roller"></i> Drywall & Painting</li>
+                        <li><i class="fas fa-home"></i> Property Maintenance</li>
+                        <li><i class="fas fa-tint"></i> Light Plumbing & Electrical</li>
+                        <li><i class="fas fa-door-open"></i> Door & Window Repairs</li>
+                        <li><i class="fas fa-hammer"></i> Rental Turnover Services</li>
+                        <li><i class="fas fa-exclamation-triangle"></i> Emergency Repairs</li>
                     </ul>
                     <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -838,12 +981,13 @@
                     </div>
                     <h2>Automotive Services</h2>
                     <ul>
-                        <li><i class="fas fa-check"></i> Vehicle Diagnostics</li>
-                        <li><i class="fas fa-check"></i> Brake Services</li>
-                        <li><i class="fas fa-check"></i> Pre-Purchase Inspections</li>
-                        <li><i class="fas fa-check"></i> Brake Controller Installation</li>
-                        <li><i class="fas fa-check"></i> Seasonal Vehicle Checks</li>
-                        <li><i class="fas fa-check"></i> Emergency Services</li>
+                        <li><i class="fas fa-car-crash"></i> Vehicle Diagnostics</li>
+                        <li><i class="fas fa-car-brake"></i> Brake Services</li>
+                        <li><i class="fas fa-search"></i> Pre-Purchase Inspections</li>
+                        <li><i class="fas fa-trailer"></i> Brake Controller Installation</li>
+                        <li><i class="fas fa-snowflake"></i> Seasonal Vehicle Checks</li>
+                        <li><i class="fas fa-truck-pickup"></i> Fleet Maintenance</li>
+                        <li><i class="fas fa-exclamation-circle"></i> Emergency Services</li>
                     </ul>
                     <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -853,17 +997,28 @@
 
     <!-- Footer -->
     <footer>
+        <div class="footer-bg">
+            <img src="SATOS-LOGO-RGB_01.png" alt="Sato's Logo Background">
+        </div>
+        
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="footer-logo">
+            <div class="footer-logo-column">
+                <div class="footer-logo">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                </div>
                 <div class="slogan">One Call Fixes It All!</div>
             </div>
             
             <div class="contact-info">
                 <h3>Contact Us</h3>
-                <p><i class="fas fa-phone"></i> <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:6086360095" class="footer-emergency-link">(608) 636-0095</a></p>
                 <p><i class="fas fa-envelope"></i> <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
                 <p><i class="fas fa-clock"></i> 24/7 Emergency Service</p>
+                
+                <div class="footer-emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:6086360095" class="footer-emergency-link">Emergency: (608) 636-0095</a>
+                </div>
             </div>
             
             <div class="service-areas">
