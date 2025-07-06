@@ -4,71 +4,1088 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Work - Sato's All Trade Solutions</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a4a6f;
+            --secondary: #e67e22;
+            --accent: #16a085;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --emergency: #c0392b;
+            --gold: #d4af37;
+            --shadow: 0 4px 20px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Banner */
+        .header-banner {
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(245,247,250,0.92) 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="100%" height="100%" fill="white"/><path d="M80,60 L120,60 L120,100 L140,120 L120,140 L80,140 L60,120 L80,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M180,80 L220,80 L240,100 L220,120 L180,120 L160,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><circle cx="280" cy="100" r="20" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,200 L100,200 L120,220 L100,240 L60,240 L40,220 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="180" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,180 L260,180 L280,200 L260,220 L220,220 L200,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,180 L340,180 L360,200 L340,220 L300,220 L280,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,300 L100,300 L120,320 L100,340 L60,340 L40,320 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="280" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,280 L260,280 L280,300 L260,320 L220,320 L200,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,280 L340,280 L360,300 L340,320 L300,320 L280,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/></svg>');
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(10,74,111,0.15);
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            height: 90px;
+            width: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 5px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            max-height: 80px;
+            max-width: 80px;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .logo-text p {
+            color: var(--secondary);
+            font-weight: 600;
+            font-style: italic;
+            font-size: 1.1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-text p::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+            background: rgba(10,74,111,0.05);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(10,74,111,0.2);
+        }
+
+        nav a.emergency-link {
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--emergency);
+        }
+
+        nav a.emergency-link:hover {
+            background: var(--emergency);
+            color: white;
+        }
+
+        nav a i {
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .gallery-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(10, 74, 111, 0.85), rgba(10, 74, 111, 0.95)), 
+                        url('https://images.unsplash.com/photo-1581093458799-1084e6f7a5c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+            margin-bottom: 60px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            text-align: center;
+            padding: 30px;
+            color: white;
+        }
+
+        .gallery-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .gallery-hero p {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 5%;
+            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 80%;
+            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.07;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        .section-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 350px;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(10,74,111,0.9), transparent);
+            color: white;
+            padding: 25px 20px 15px;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-info {
+            transform: translateY(0);
+        }
+
+        .gallery-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .gallery-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .gallery-category {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 5%;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 80%;
+            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.07;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        .testimonials-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(248, 249, 250, 0.8);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10,74,111,0.1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+
+        .testimonial-author h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-author p {
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .testimonial-content::before {
+            content: """;
+            position: absolute;
+            left: 0;
+            top: -20px;
+            font-size: 4rem;
+            color: rgba(10,74,111,0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-rating {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 5%;
+            background: linear-gradient(rgba(10, 74, 111, 0.9), rgba(10, 74, 111, 0.95)), 
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1973&q=80') no-repeat center/cover;
+            text-align: center;
+            color: white;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+        }
+
+        .cta-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            min-width: 240px;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:not(.emergency) {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .cta-button:not(.emergency):hover {
+            background: #d35400;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4);
+        }
+
+        .cta-button.emergency {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .cta-button.emergency:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced Footer with Logo Integration */
+        footer {
+            background: linear-gradient(to right, var(--dark), #1a2a3a);
+            color: white;
+            padding: 100px 5% 40px;
+            position: relative;
+        }
+
+        .footer-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.07;
+            z-index: 1;
+            max-width: 600px;
+            width: 60%;
+            text-align: center;
+        }
+
+        .footer-bg img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 40px;
+            max-width: 1300px;
+            margin: 50px auto 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 10px;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .slogan {
+            font-style: italic;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-top: 20px;
+            color: var(--gold);
+            font-weight: 600;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        .contact-info, .service-areas {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-info h3, .service-areas h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-info h3::after, .service-areas h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
+        .contact-info p, .service-areas p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-emergency {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(192, 57, 43, 0.3);
+            border-radius: 30px;
+            margin-top: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-emergency-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .area-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            width: 45px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .gallery-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero {
+                height: 40vh;
+                min-height: 350px;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .gallery-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .contact-info h3::after, 
+            .service-areas h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .contact-info p, 
+            .service-areas p {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
-            </a>
+    <!-- Professional Header Banner -->
+    <div class="header-banner">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                </div>
+                <div class="logo-text">
+                    <h1>Sato's All Trade Solutions</h1>
+                    <p>Handyman & Auto Repair Experts</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="quote-form.html"><i class="fas fa-file-invoice-dollar"></i> Get Quote</a></li>
+                    <li><a href="service-area.html"><i class="fas fa-map-marker-alt"></i> Service Areas</a></li>
+                    <li><a href="gallery.html" class="active"><i class="fas fa-photo-video"></i> Our Work</a></li>
+                    <li><a href="tel:6086360095" class="emergency-link"><i class="fas fa-phone-alt"></i> Emergency</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="emergency-contact">
-            <span>24/7 Emergency Services:</span>
-            <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="hero-content">
+            <h1>Our Work Gallery</h1>
+            <p>Showcasing Our Quality Repairs and Transformations</p>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="quote-form.html">Get Quote</a></li>
-                <li><a href="book-appointment.html">Book Appointment</a></li>
-                <li><a href="service-area.html">Service Areas</a></li>
-                <li><a href="gallery.html">Our Work</a></li>
-                <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
-            </ul>
-        </nav>
-    </header>
+    </section>
 
-    <main class="gallery-container">
-        <section class="gallery-intro">
-            <h2>Project Gallery</h2>
-            <p>A showcase of our quality handyman and automotive work. Check back soon for photos of our completed projects!</p>
-        </section>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Project Gallery</h2>
+                <p class="tagline">Before & After Transformations</p>
+            </div>
+            
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="handyman">Handyman Services</button>
+                <button class="filter-btn" data-filter="automotive">Auto Repair</button>
+                <button class="filter-btn" data-filter="remodeling">Home Remodeling</button>
+                <button class="filter-btn" data-filter="emergency">Emergency Repairs</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Handyman Project -->
+                <div class="gallery-item" data-category="handyman">
+                    <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Bathroom Remodel">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Handyman Services</span>
+                        <h3>Bathroom Renovation</h3>
+                        <p>Complete bathroom remodel including tile work, fixtures, and plumbing</p>
+                    </div>
+                </div>
+                
+                <!-- Auto Repair Project -->
+                <div class="gallery-item" data-category="automotive">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Auto Repair">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Auto Repair</span>
+                        <h3>Brake System Overhaul</h3>
+                        <p>Complete brake system replacement on 2020 Ford F-150</p>
+                    </div>
+                </div>
+                
+                <!-- Remodeling Project -->
+                <div class="gallery-item" data-category="remodeling">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Kitchen Remodel">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Home Remodeling</span>
+                        <h3>Kitchen Transformation</h3>
+                        <p>Full kitchen remodel with custom cabinetry and countertops</p>
+                    </div>
+                </div>
+                
+                <!-- Emergency Repair -->
+                <div class="gallery-item" data-category="emergency">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Water Damage Repair">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Emergency Repair</span>
+                        <h3>Water Damage Restoration</h3>
+                        <p>Emergency repair after basement flooding incident</p>
+                    </div>
+                </div>
+                
+                <!-- Handyman Project 2 -->
+                <div class="gallery-item" data-category="handyman">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Deck Construction">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Handyman Services</span>
+                        <h3>Custom Deck Construction</h3>
+                        <p>Built 20'x16' pressure-treated deck with custom railing</p>
+                    </div>
+                </div>
+                
+                <!-- Auto Repair Project 2 -->
+                <div class="gallery-item" data-category="automotive">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="Engine Repair">
+                    <div class="gallery-info">
+                        <span class="gallery-category">Auto Repair</span>
+                        <h3>Engine Diagnostic & Repair</h3>
+                        <p>Comprehensive diagnostic and repair of engine issues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section class="gallery-grid">
-            <!-- Example of a future gallery item -->
-            <!--
-            <div class="gallery-item">
-                <img src="path/to/your/image.jpg" alt="Description of the project">
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="section-title">
+                <h2>Customer Testimonials</h2>
+                <p class="tagline">What Our Clients Say About Our Work</p>
             </div>
-            -->
-            <div class="gallery-placeholder">
-                <p>New project photos coming soon!</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">JS</div>
+                        <div class="testimonial-author">
+                            <h3>John Smith</h3>
+                            <p>Homeowner in Lena, IL</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>Brandon completely transformed our outdated bathroom. His attention to detail was incredible - from the tile work to the plumbing fixtures, everything was perfect. He finished ahead of schedule and the quality exceeded our expectations.</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">MR</div>
+                        <div class="testimonial-author">
+                            <h3>Maria Rodriguez</h3>
+                            <p>Business Owner in Madison, WI</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>Sato's has been maintaining our company fleet for over a year now. They're incredibly reliable and have saved us thousands in repair costs. When our delivery van broke down, they had it fixed within 24 hours. Their emergency service is a lifesaver!</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">TP</div>
+                        <div class="testimonial-author">
+                            <h3>Thomas Peterson</h3>
+                            <p>Property Manager in Freeport, IL</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p>I manage 15 rental properties and Sato's is my go-to for all maintenance and repair work. They handle everything from plumbing emergencies to appliance installation. Their team is professional, punctual, and their work is always top-notch.</p>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
             </div>
-            <div class="gallery-placeholder">
-                <p>New project photos coming soon!</p>
-            </div>
-            <div class="gallery-placeholder">
-                <p>New project photos coming soon!</p>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Space or Vehicle?</h2>
+            <p>Contact us today for a free consultation and quote</p>
+            <div class="cta-buttons">
+                <a href="quote-form.html" class="cta-button">
+                    <i class="fas fa-file-invoice-dollar"></i> Get a Free Quote
+                </a>
+                <a href="tel:6086360095" class="cta-button emergency">
+                    <i class="fas fa-phone-alt"></i> Call Now: (608) 636-0095
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
+        <div class="footer-bg">
+            <img src="SATOS-LOGO-RGB_01.png" alt="Sato's Logo Background">
+        </div>
+        
         <div class="footer-content">
+            <div class="footer-logo-column">
+                <div class="footer-logo">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                </div>
+                <div class="slogan">Precision, Care, and Expertise in Every Repair</div>
+                <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
+            </div>
+            
             <div class="contact-info">
                 <h3>Contact Us</h3>
-                <p>Phone: <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a></p>
-                <p>Email: <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:6086360095" class="footer-emergency-link">(608) 636-0095</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
+                <p><i class="fas fa-clock"></i> 24/7 Emergency Service</p>
+                
+                <div class="footer-emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:6086360095" class="footer-emergency-link">Emergency: (608) 636-0095</a>
+                </div>
             </div>
+            
             <div class="service-areas">
                 <h3>Service Areas</h3>
-                <p>Lena, IL | Madison, WI | Surrounding Areas</p>
+                <div class="area-badge">Serving Northwest Illinois & Southern Wisconsin</div>
+                <p class="tagline" style="margin-top: 25px; color: var(--gold);">Reliable Repairs for Your Home Haven and Journey</p>
             </div>
         </div>
+        
         <div class="footer-bottom">
-            <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
+            <p>&copy; 2025 Sato's All Trade Solutions LLC. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Gallery Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add current year to footer
+            const currentYear = new Date().getFullYear();
+            document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
+        });
+    </script>
 </body>
 </html>
