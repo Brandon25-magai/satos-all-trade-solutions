@@ -723,3 +723,110 @@ footer {
         text-align: center;
     }
 }
+/* Service Area Page Specific Styles */
+.service-area-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 4rem 0;
+    background: var(--light);
+    border-radius: 8px;
+}
+
+.hero-section h1 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    color: var(--secondary);
+    font-size: 1.2rem;
+}
+
+.service-description {
+    margin-bottom: 3rem;
+}
+
+.lead-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--dark);
+}
+
+.primary-service-area {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+}
+
+.service-locations ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.service-locations li {
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.extended-service {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: 8px;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.contact-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contact-info {
+    display: grid;
+    gap: 1rem;
+}
+
+.contact-info a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .service-locations ul {
+        grid-template-columns: 1fr;
+    }
+}
