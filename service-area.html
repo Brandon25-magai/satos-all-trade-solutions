@@ -4,95 +4,730 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Areas - Sato's All Trade Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400,600,700,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSM3IWCdVgGisFxvvB0pTfVHVOXh8v1sg&libraries=places"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056b3;
+            --secondary: #ff6b00;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .emergency-banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .emergency-banner i {
+            color: #ffdd00;
+        }
+        
+        .emergency-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .emergency-link:hover {
+            color: #ffdd00;
+            text-decoration: underline;
+        }
+        
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        nav a.active {
+            color: var(--primary);
+        }
+        
+        nav a.active:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Service Area Styles */
+        .service-area-container {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, #f0f7ff, #ffffff);
+        }
+        
+        .service-area {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .service-area h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .service-area h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .location-checker {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .location-checker h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .location-input {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        #locationInput {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        #locationInput:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        #availabilityResult {
+            min-height: 30px;
+            padding: 8px;
+            font-weight: 600;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .available {
+            color: #28a745;
+            background-color: rgba(40, 167, 69, 0.1);
+        }
+        
+        .unavailable {
+            color: #dc3545;
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+        
+        .check-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .check-button:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        #serviceAreaMap {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+        }
+        
+        .service-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .area-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .area-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .area-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .area-card ul {
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .area-card ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .area-card ul li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .area-card.standard {
+            border-top-color: #28a745;
+        }
+        
+        .area-card.extended {
+            border-top-color: #ffc107;
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        .service-areas p {
+            line-height: 1.8;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .service-details {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .area-card {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-main {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            nav a {
+                display: block;
+                padding: 10px;
+                text-align: center;
+                background-color: #f8f9fa;
+                border-radius: 4px;
+            }
+            
+            .emergency-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .service-area h2 {
+                font-size: 2rem;
+            }
+            
+            #serviceAreaMap {
+                height: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Emergency Banner -->
-    <div class="emergency-banner">
-        <p>24/7 Emergency Services: <a href="tel:6086360095">(608) 636-0095</a></p>
-    </div>
-
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="nav-brand">
-            <h1>Sato's All Trade Solutions</h1>
-            <p>Handyman & Auto Repair Experts</p>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="quote-form.html">Get Quote</a>
-            <a href="service-area.html">Service Areas</a>
-            <a href="gallery.html">Our Work</a>
-            <a href="#emergency">Emergency</a>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Our Service Areas</h1>
-                <h2>Providing Expert Services to Northwest Illinois & Southern Wisconsin</h2>
+    <!-- Header Section -->
+    <header>
+        <div class="header-top">
+            <div class="container emergency-banner">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>24/7 Emergency Services:</span>
+                <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
             </div>
-        </section>
+        </div>
+        
+        <div class="container header-main">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
+                </a>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quote-form.html">Get Quote</a></li>
+                    <li><a href="service-area.html" class="active">Service Areas</a></li>
+                    <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <!-- Service Areas Content -->
-        <section class="content-section">
-            <div class="container">
-                <div class="service-area-info">
-                    <h2>Areas We Serve</h2>
-                    <p>We proudly offer our handyman and auto repair services to a wide range of locations, centered around Lena, IL and extending to the greater Madison, WI area.</p>
+    <!-- Service Area Content -->
+    <main class="service-area-container">
+        <div class="container">
+            <section class="service-area">
+                <h2>Our Service Areas</h2>
 
-                    <div class="service-locations">
-                        <div class="location-box">
-                            <h3>Primary Service Areas:</h3>
-                            <ul>
-                                <li><i class="fas fa-map-marker-alt"></i> Lena, IL</li>
-                                <li><i class="fas fa-map-marker-alt"></i> Madison, WI</li>
-                                <li><i class="fas fa-map-marker-alt"></i> Monroe, WI</li>
-                                <li><i class="fas fa-map-marker-alt"></i> Freeport, IL</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="extended-service-info">
-                        <h3>Extended Service Coverage</h3>
-                        <p>Outside our primary service area? Contact us! We frequently travel for larger projects.</p>
-                        <p class="note">*Travel fees may apply for extended service areas</p>
+                <div class="location-checker">
+                    <h3>Check If We Service Your Area</h3>
+                    <div class="location-input">
+                        <input type="text" id="locationInput" placeholder="Enter your address">
+                        <button class="check-button" id="checkLocationBtn">Check Availability</button>
+                        <div id="availabilityResult"></div>
                     </div>
                 </div>
 
-                <!-- Call to Action -->
-                <div class="cta-section">
-                    <h2>Ready to Get Started?</h2>
-                    <div class="cta-buttons">
-                        <a href="quote-form.html" class="btn primary-btn">Request a Quote</a>
-                        <a href="tel:6086360095" class="btn secondary-btn">Call Now</a>
+                <div id="serviceAreaMap"></div>
+
+                <div class="service-details">
+                    <div class="area-card standard">
+                        <h3>Standard Service Area</h3>
+                        <ul>
+                            <li>25-mile radius from Lena, IL</li>
+                            <li>Madison metropolitan area</li>
+                            <li>No additional travel fee</li>
+                            <li>Next-day service available</li>
+                            <li>Priority scheduling</li>
+                        </ul>
+                    </div>
+
+                    <div class="area-card extended">
+                        <h3>Extended Service Area</h3>
+                        <ul>
+                            <li>Up to 50 miles from service centers</li>
+                            <li>Travel fee may apply</li>
+                            <li>Subject to availability</li>
+                            <li>2-3 day service window</li>
+                            <li>Specialized service options</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3>Contact Us</h3>
-                <p><i class="fas fa-phone"></i> (608) 636-0095</p>
-                <p><i class="fas fa-envelope"></i> Brandon@satosalltradesolutions.com</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section contact-info">
+                    <h3>Contact Us</h3>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:6086360095">(608) 636-0095</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-clock"></i>
+                        24/7 Emergency Services
+                    </p>
+                </div>
+                
+                <div class="footer-section service-areas">
+                    <h3>Service Areas</h3>
+                    <p>Lena, IL | Madison, WI | Surrounding Areas</p>
+                    <p>Northern Illinois | Southern Wisconsin</p>
+                    <p>Rockford Metro | Freeport Area</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="quote-form.html" style="color: #fff; text-decoration: none;">Get Quote</a></li>
+                        <li style="margin-bottom: 10px;"><a href="service-area.html" style="color: #fff; text-decoration: none;">Service Areas</a></li>
+                        <li><a href="tel:6086360095" style="color: #fff; text-decoration: none;">Emergency Service</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-locations">
-                <h3>Service Areas</h3>
-                <p>Lena, IL | Madison, WI | Surrounding Areas</p>
-            </div>
-            <div class="copyright">
+            
+            <div class="footer-bottom">
                 <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Initialize Google Map
+        function initMap() {
+            // Set coordinates for Lena, IL
+            const lena = { lat: 42.379, lng: -89.822 };
+            
+            // Create the map
+            const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
+                zoom: 9,
+                center: lena,
+                styles: [
+                    {
+                        featureType: "administrative",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#444444" }],
+                    },
+                    {
+                        featureType: "landscape",
+                        elementType: "all",
+                        stylers: [{ color: "#f2f2f2" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "all",
+                        stylers: [{ visibility: "off" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "all",
+                        stylers: [{ saturation: -100 }, { lightness: 45 }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "all",
+                        stylers: [{ visibility: "simplified" }],
+                    },
+                    {
+                        featureType: "road.arterial",
+                        elementType: "labels.icon",
+                        stylers: [{ visibility: "off" }],
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "all",
+                        stylers: [{ visibility: "off" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "all",
+                        stylers: [{ color: "#d1e8ff" }, { visibility: "on" }],
+                    },
+                ],
+            });
+            
+            // Add marker for Lena, IL
+            new google.maps.Marker({
+                position: lena,
+                map: map,
+                title: "Lena, IL",
+                icon: {
+                    url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                },
+            });
+            
+            // Add marker for Madison, WI
+            const madison = { lat: 43.073, lng: -89.401 };
+            new google.maps.Marker({
+                position: madison,
+                map: map,
+                title: "Madison, WI",
+                icon: {
+                    url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                },
+            });
+            
+            // Draw service areas
+            // Standard service area (25 miles from Lena)
+            const standardCircle = new google.maps.Circle({
+                strokeColor: "#28a745",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#28a745",
+                fillOpacity: 0.2,
+                map: map,
+                center: lena,
+                radius: 40233.6, // 25 miles in meters
+            });
+            
+            // Extended service area (50 miles from Lena)
+            const extendedCircle = new google.maps.Circle({
+                strokeColor: "#ffc107",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#ffc107",
+                fillOpacity: 0.1,
+                map: map,
+                center: lena,
+                radius: 80467.2, // 50 miles in meters
+            });
+        }
+        
+        // Check if location is within service area
+        function checkServiceAvailability() {
+            const address = document.getElementById("locationInput").value;
+            const resultDiv = document.getElementById("availabilityResult");
+            
+            if (!address) {
+                resultDiv.textContent = "Please enter an address.";
+                resultDiv.className = "";
+                return;
+            }
+            
+            // For demo purposes - in a real app, this would use geocoding
+            // and distance calculations to Lena/Madison
+            const isAvailable = Math.random() > 0.3;
+            
+            if (isAvailable) {
+                resultDiv.textContent = "✅ Great news! We service your area.";
+                resultDiv.className = "available";
+            } else {
+                resultDiv.textContent = "⚠️ Currently, we don't service your area. Contact us for special arrangements.";
+                resultDiv.className = "unavailable";
+            }
+        }
+        
+        // Initialize the map when the window loads
+        window.onload = function() {
+            initMap();
+            
+            // Add event listeners
+            document.getElementById("checkLocationBtn").addEventListener("click", checkServiceAvailability);
+            
+            // Mobile menu toggle
+            document.getElementById("mobileMenuBtn").addEventListener("click", function() {
+                const nav = document.getElementById("mainNav");
+                nav.classList.toggle("active");
+            });
+            
+            // Allow Enter key to trigger location check
+            document.getElementById("locationInput").addEventListener("keypress", function(e) {
+                if (e.key === "Enter") {
+                    checkServiceAvailability();
+                }
+            });
+        };
+    </script>
 </body>
 </html>
