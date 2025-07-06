@@ -31,32 +31,34 @@
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
+        /* Emergency Bar - Improved Contrast */
         .emergency-bar {
-            background: linear-gradient(to right, #c0392b, #e74c3c);
+            background: linear-gradient(to right, #8B0000, #c0392b);
             color: white;
-            padding: 12px 0;
+            padding: 15px 0;
             text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
             position: relative;
             z-index: 100;
+            letter-spacing: 0.5px;
         }
 
         .emergency-link {
-            color: white;
+            color: #FFD700;
             text-decoration: none;
             font-weight: 700;
             margin-left: 8px;
-            padding: 4px 10px;
+            padding: 5px 15px;
             border-radius: 4px;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             transition: var(--transition);
+            display: inline-block;
         }
 
         .emergency-link:hover {
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
             text-decoration: underline;
         }
 
@@ -145,8 +147,8 @@
         /* Hero Section */
         .hero {
             position: relative;
-            height: 85vh;
-            min-height: 600px;
+            height: 75vh;
+            min-height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -154,19 +156,6 @@
             background: linear-gradient(rgba(10, 74, 111, 0.85), rgba(10, 74, 111, 0.95)), 
                         url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
             margin-bottom: 60px;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
-            background-size: contain;
-            opacity: 0.15;
-            z-index: 1;
         }
 
         .hero-content {
@@ -248,20 +237,37 @@
             100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
         }
 
-        /* Services Section */
-        .services {
-            display: flex;
-            gap: 40px;
-            padding: 0 5% 80px;
+        /* Services Section with Watermarked Logo */
+        .services-section {
+            position: relative;
+            padding: 80px 5%;
+            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
+            overflow: hidden;
+        }
+
+        .services-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
+            background-size: 40%;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .services-container {
+            position: relative;
+            z-index: 2;
             max-width: 1300px;
             margin: 0 auto;
-            flex-wrap: wrap;
         }
 
         .services-title {
             text-align: center;
             margin-bottom: 50px;
-            width: 100%;
         }
 
         .services-title h2 {
@@ -292,6 +298,12 @@
             margin: 0 auto;
         }
 
+        .services {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
         .service-card {
             flex: 1;
             min-width: 320px;
@@ -299,15 +311,17 @@
             border-radius: 15px;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border-top: 5px solid;
             position: relative;
             overflow: hidden;
-            background: white;
+            background: rgba(255, 255, 255, 0.85);
+            border-top: 5px solid;
+            z-index: 3;
         }
 
         .service-card:hover {
             transform: translateY(-15px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background: white;
         }
 
         .service-card.handyman {
@@ -376,6 +390,9 @@
             transition: var(--transition);
             margin-top: 20px;
             font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
 
         .service-button:hover {
@@ -532,7 +549,7 @@
 
         @media (max-width: 700px) {
             .hero {
-                height: 75vh;
+                height: 80vh;
             }
             
             .hero h1 {
@@ -604,7 +621,7 @@
     </style>
 </head>
 <body>
-    <!-- Emergency Bar -->
+    <!-- Emergency Bar - Improved Contrast -->
     <div class="emergency-bar">
         <i class="fas fa-exclamation-circle"></i> 24/7 Emergency Services: 
         <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
@@ -646,43 +663,47 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="services-title">
-            <h2>Our Professional Services</h2>
-            <p>Quality workmanship guaranteed with 20 years of experience</p>
-        </div>
-        
-        <div class="service-card handyman">
-            <div class="service-icon">
-                <i class="fas fa-tools"></i>
+    <!-- Services Section with Watermarked Logo -->
+    <section class="services-section">
+        <div class="services-container">
+            <div class="services-title">
+                <h2>Our Professional Services</h2>
+                <p>Quality workmanship guaranteed with 20 years of experience</p>
             </div>
-            <h2>Handyman Services</h2>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> General Home Repairs</li>
-                <li><i class="fas fa-check-circle"></i> Drywall & Painting</li>
-                <li><i class="fas fa-check-circle"></i> Property Maintenance</li>
-                <li><i class="fas fa-check-circle"></i> Light Plumbing & Electrical</li>
-                <li><i class="fas fa-check-circle"></i> Door & Window Repairs</li>
-                <li><i class="fas fa-check-circle"></i> Emergency Repairs</li>
-            </ul>
-            <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
-        </div>
+            
+            <div class="services">
+                <div class="service-card handyman">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h2>Handyman Services</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> General Home Repairs</li>
+                        <li><i class="fas fa-check-circle"></i> Drywall & Painting</li>
+                        <li><i class="fas fa-check-circle"></i> Property Maintenance</li>
+                        <li><i class="fas fa-check-circle"></i> Light Plumbing & Electrical</li>
+                        <li><i class="fas fa-check-circle"></i> Door & Window Repairs</li>
+                        <li><i class="fas fa-check-circle"></i> Emergency Repairs</li>
+                    </ul>
+                    <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
 
-        <div class="service-card automotive">
-            <div class="service-icon">
-                <i class="fas fa-car-alt"></i>
+                <div class="service-card automotive">
+                    <div class="service-icon">
+                        <i class="fas fa-car-alt"></i>
+                    </div>
+                    <h2>Automotive Services</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Vehicle Diagnostics</li>
+                        <li><i class="fas fa-check-circle"></i> Brake Services</li>
+                        <li><i class="fas fa-check-circle"></i> Pre-Purchase Inspections</li>
+                        <li><i class="fas fa-check-circle"></i> Brake Controller Installation</li>
+                        <li><i class="fas fa-check-circle"></i> Seasonal Vehicle Checks</li>
+                        <li><i class="fas fa-check-circle"></i> Emergency Services</li>
+                    </ul>
+                    <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <h2>Automotive Services</h2>
-            <ul>
-                <li><i class="fas fa-check-circle"></i> Vehicle Diagnostics</li>
-                <li><i class="fas fa-check-circle"></i> Brake Services</li>
-                <li><i class="fas fa-check-circle"></i> Pre-Purchase Inspections</li>
-                <li><i class="fas fa-check-circle"></i> Brake Controller Installation</li>
-                <li><i class="fas fa-check-circle"></i> Seasonal Vehicle Checks</li>
-                <li><i class="fas fa-check-circle"></i> Emergency Services</li>
-            </ul>
-            <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -725,9 +746,12 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
             
