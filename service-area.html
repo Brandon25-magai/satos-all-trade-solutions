@@ -4,109 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Areas - Sato's All Trade Solutions</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Note: Google Maps requires a valid API key for the map to display correctly on a live site -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlHAmxmMei8CkaW5bOwWJBf_dygWEzGjo&libraries=places"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="index.html">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
-            </a>
-        </div>
-        <div class="emergency-contact">
-            <span>24/7 Emergency Services:</span>
-            <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="quote-form.html">Get Quote</a></li>
-                <li><a href="book-appointment.html">Book Appointment</a></li>
-                <li><a href="service-area.html">Service Areas</a></li>
-                <li><a href="gallery.html">Our Work</a></li>
-                <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
-            </ul>
-        </nav>
+    <header class="emergency-banner">
+        <p>24/7 Emergency Services: <a href="tel:6086360095">(608) 636-0095</a></p>
     </header>
 
-    <main class="service-area-container">
-        <section class="service-area-info">
-            <h2>Our Service Areas</h2>
-            <p>We proudly offer our handyman and auto repair services to a wide range of locations, centered around Lena, IL and extending to the greater Madison, WI area. See our primary service radius on the map below.</p>
+    <nav class="main-nav">
+        <div class="logo">
+            <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quote-form.html">Get Quote</a></li>
+            <li><a href="book-appointment.html">Book Appointment</a></li>
+            <li><a href="service-area.html">Service Areas</a></li>
+            <li><a href="gallery.html">Our Work</a></li>
+            <li><a href="#emergency" class="emergency-link">Emergency Service</a></li>
+        </ul>
+    </nav>
+
+    <main class="service-area-main">
+        <section class="hero-section">
+            <h1>Our Service Areas</h1>
+            <p class="subtitle">Reliable Repairs for Your Home Haven and Journey</p>
         </section>
 
-        <!-- The map will be displayed here -->
-        <div id="serviceAreaMap" style="height: 450px; width: 100%;-webkit-filter: grayscale(100%); filter: grayscale(100%);"></div>
-
-        <section class="service-details-grid">
-            <div class="area-card">
-                <h3>Primary Service Area</h3>
-                <ul>
-                    <li>Lena, IL</li>
-                    <li>Madison, WI</li>
-                    <li>Monroe, WI</li>
-                    <li>Freeport, IL</li>
-                    <li>And all surrounding communities</li>
-                </ul>
+        <section class="service-description">
+            <div class="container">
+                <p class="lead-text">We proudly offer our handyman and auto repair services to a wide range of locations, centered around Lena, IL and extending to the greater Madison, WI area.</p>
             </div>
+        </section>
 
-            <div class="area-card">
-                <h3>Extended Service Area</h3>
+        <section class="primary-service-area">
+            <div class="container">
+                <h2>Primary Service Area</h2>
+                <div class="service-locations">
+                    <ul>
+                        <li>Lena, IL</li>
+                        <li>Madison, WI</li>
+                        <li>Monroe, WI</li>
+                        <li>Freeport, IL</li>
+                        <li>And all surrounding communities</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="extended-service">
+            <div class="container">
+                <h2>Extended Service Area</h2>
                 <p>If you're outside our primary area, please don't hesitate to reach out! We often travel further for larger projects. A travel fee may apply.</p>
-                <a href="quote-form.html" class="cta-button">Request a Quote</a>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-buttons">
+                    <a href="quote-form.html" class="btn primary-btn">Request a Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p>Phone: <a href="tel:6086360095">(608) 636-0095</a></p>
+                    <p>Email: <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
-            <div class="contact-info">
-                <h3>Contact Us</h3>
-                <p>Phone: <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a></p>
-                <p>Email: <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
-            </div>
             <div class="service-areas">
                 <h3>Service Areas</h3>
                 <p>Lena, IL | Madison, WI | Surrounding Areas</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
-    <script>
-        // Initialize and display the map
-        function initMap() {
-            const lenaIL = { lat: 42.383, lng: -89.843 };
-            const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
-                zoom: 9,
-                center: lenaIL,
-            });
-
-            // Create a circle for the service radius
-            new google.maps.Circle({
-                strokeColor: "#FF8C00",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#FF8C00",
-                fillOpacity: 0.35,
-                map,
-                center: lenaIL,
-                radius: 40233.6, // 25 miles in meters
-            });
-        }
-
-        // Handle cases where the Google Maps script fails to load
-        window.onload = function() {
-            if (typeof google === 'object' && typeof google.maps === 'object') {
-                initMap();
-            } else {
-                document.getElementById('serviceAreaMap').innerHTML = '<p style="text-align:center; padding: 20px;">Could not load map. Please check API key.</p>';
-            }
-        };
-    </script>
 </body>
 </html>
