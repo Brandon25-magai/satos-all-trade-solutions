@@ -7,581 +7,865 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSM3IWCdVgGisFxvvB0pTfVHVOXh8v1sg&libraries=places"></script>
     <style>
-        /* Global Styles */
+        :root {
+            --primary: #0a4a6f;
+            --secondary: #e67e22;
+            --accent: #16a085;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --emergency: #c0392b;
+            --gold: #d4af37;
+            --shadow: 0 4px 20px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        :root {
-            --primary: #0056b3;
-            --secondary: #ff6b00;
-            --dark: #333;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --white: #fff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
+
         body {
-            background-color: var(--light);
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header Styles - Matching Homepage Banner */
-        header {
-            background-color: var(--white);
+
+        /* Header Banner - Matched to Homepage */
+        .header-banner {
+            background: 
+                linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(245,247,250,0.92) 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="100%" height="100%" fill="white"/><path d="M80,60 L120,60 L120,100 L140,120 L120,140 L80,140 L60,120 L80,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M180,80 L220,80 L240,100 L220,120 L180,120 L160,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><circle cx="280" cy="100" r="20" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,200 L100,200 L120,220 L100,240 L60,240 L40,220 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="180" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,180 L260,180 L280,200 L260,220 L220,220 L200,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,180 L340,180 L360,200 L340,220 L300,220 L280,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,300 L100,300 L120,320 L100,340 L60,340 L40,320 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="280" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,280 L260,280 L280,300 L260,320 L220,320 L200,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,280 L340,280 L360,300 L340,320 L300,320 L280,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/></svg>');
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(10,74,111,0.15);
+            padding: 15px 0;
         }
-        
-        .emergency-banner {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 8px 0;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        
-        .emergency-banner-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .emergency-banner i {
-            color: #ffdd00;
-        }
-        
-        .emergency-link {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: 5px;
-            transition: all 0.3s ease;
-        }
-        
-        .emergency-link:hover {
-            color: #ffdd00;
-            text-decoration: underline;
-        }
-        
-        .header-main {
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
         }
-        
+
         .logo-container {
             display: flex;
             align-items: center;
+            gap: 20px;
         }
-        
+
         .logo {
-            height: 60px;
+            height: 90px;
+            width: 90px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 5px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             transition: transform 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
-        
+
+        .logo img {
+            max-height: 80px;
+            max-width: 80px;
+        }
+
         .logo:hover {
             transform: scale(1.05);
         }
-        
-        nav ul {
+
+        .logo-text {
             display: flex;
-            list-style: none;
-            gap: 20px;
+            flex-direction: column;
         }
-        
-        nav a {
-            color: var(--dark);
-            text-decoration: none;
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .logo-text p {
+            color: var(--secondary);
             font-weight: 600;
+            font-style: italic;
             font-size: 1.1rem;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        nav a:hover {
-            color: var(--primary);
-        }
-        
-        nav a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover:after {
-            width: 100%;
-        }
-        
-        nav a.active {
-            color: var(--primary);
-        }
-        
-        nav a.active:after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        
-        /* Service Area Styles */
-        .service-area-container {
-            padding: 60px 0;
-            background: linear-gradient(to bottom, #f0f7ff, #ffffff);
-        }
-        
-        .service-area {
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .service-area h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 30px;
             position: relative;
             display: inline-block;
         }
-        
-        .service-area h2:after {
-            content: '';
+
+        .logo-text p::after {
+            content: "";
             position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
         }
-        
-        .location-checker {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin: 0 auto 40px;
+
+        nav ul {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            flex-wrap: wrap;
         }
-        
-        .location-checker h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .location-input {
+
+        nav li {
             position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.05rem;
+            background: rgba(10,74,111,0.05);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(10,74,111,0.2);
+        }
+
+        nav a.emergency-link {
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--emergency);
+        }
+
+        nav a.emergency-link:hover {
+            background: var(--emergency);
+            color: white;
+        }
+
+        nav a i {
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section for Service Areas */
+        .service-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(10, 74, 111, 0.85), rgba(10, 74, 111, 0.95)), 
+                        url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+            margin-bottom: 60px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            text-align: center;
+            padding: 30px;
+            color: white;
+        }
+
+        .service-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .service-hero p {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-weight: 300;
+        }
+
+        /* Service Area Content */
+        .service-area-container {
+            padding: 100px 5%;
+            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-area-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 80%;
+            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.07;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+        }
+
+        .section-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
             margin-bottom: 15px;
         }
-        
-        #locationInput {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--secondary);
+            border-radius: 3px;
         }
-        
+
+        .location-checker {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto 60px;
+            border-left: 4px solid var(--secondary);
+            transition: var(--transition);
+        }
+
+        .location-checker:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .location-checker h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .location-checker h3 i {
+            color: var(--secondary);
+            font-size: 2rem;
+        }
+
+        .location-input {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        #locationInput {
+            flex: 1;
+            min-width: 300px;
+            padding: 18px 25px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+            font-family: 'Raleway', sans-serif;
+        }
+
         #locationInput:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+            box-shadow: 0 0 0 3px rgba(10, 74, 111, 0.1);
         }
-        
+
         #availabilityResult {
-            min-height: 30px;
-            padding: 8px;
+            min-height: 40px;
+            padding: 12px;
             font-weight: 600;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-align: center;
         }
-        
+
         .available {
             color: #28a745;
             background-color: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.3);
         }
-        
+
         .unavailable {
             color: #dc3545;
             background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
         }
-        
+
         .check-button {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 5px;
+            padding: 18px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            width: 100%;
-        }
-        
-        .check-button:hover {
-            background-color: #004494;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        #serviceAreaMap {
-            height: 400px;
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin-bottom: 40px;
-            border: 1px solid #ddd;
-        }
-        
-        .service-details {
+            transition: var(--transition);
+            font-family: 'Montserrat', sans-serif;
             display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 240px;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(10,74,111,0.3);
         }
-        
-        .area-card {
-            background-color: var(--white);
-            border-radius: 10px;
+
+        .check-button:hover {
+            background: #083a5a;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(10,74,111,0.4);
+        }
+
+        #serviceAreaMap {
+            height: 500px;
+            width: 100%;
+            border-radius: 15px;
             box-shadow: var(--shadow);
-            padding: 30px;
-            flex: 1;
-            min-width: 280px;
-            max-width: 400px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            border-top: 4px solid var(--primary);
+            margin-bottom: 60px;
+            border: 1px solid rgba(10,74,111,0.1);
         }
-        
+
+        .service-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .area-card {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10,74,111,0.1);
+        }
+
         .area-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
-        
+
         .area-card h3 {
             color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
         }
-        
+
+        .area-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+        }
+
         .area-card ul {
             list-style: none;
-            text-align: left;
-            padding-left: 20px;
         }
-        
-        .area-card ul li {
-            margin-bottom: 12px;
+
+        .area-card li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
             position: relative;
-            padding-left: 25px;
+            padding-left: 35px;
         }
-        
-        .area-card ul li:before {
+
+        .area-card li::before {
             content: '\f00c';
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
             position: absolute;
             left: 0;
             color: var(--secondary);
+            font-size: 1.3rem;
         }
-        
+
         .area-card.standard {
-            border-top-color: #28a745;
+            border-top: 5px solid #28a745;
         }
-        
+
         .area-card.extended {
-            border-top-color: #ffc107;
+            border-top: 5px solid #ffc107;
         }
-        
-        /* Footer Styles */
+
+        .area-card.standard h3::after {
+            background: #28a745;
+        }
+
+        .area-card.extended h3::after {
+            background: #ffc107;
+        }
+
+        /* Enhanced Footer with Logo Integration */
         footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 50px 0 20px;
+            background: linear-gradient(to right, var(--dark), #1a2a3a);
+            color: white;
+            padding: 100px 5% 40px;
+            margin-top: 80px;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            position: relative;
         }
-        
+
+        .footer-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.07;
+            z-index: 1;
+            max-width: 600px;
+            width: 60%;
+            text-align: center;
+        }
+
+        .footer-bg img {
+            max-width: 100%;
+            height: auto;
+        }
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .footer-section h3 {
-            color: var(--secondary);
-            margin-bottom: 20px;
-            font-size: 1.4rem;
+            gap: 50px;
+            margin-bottom: 40px;
+            max-width: 1300px;
+            margin: 50px auto 40px;
             position: relative;
-            padding-bottom: 10px;
+            z-index: 2;
         }
-        
-        .footer-section h3:after {
+
+        .footer-logo-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            padding: 10px;
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .slogan {
+            font-style: italic;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            margin-top: 20px;
+            color: var(--gold);
+            font-weight: 600;
+            text-align: center;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        .contact-info, .service-areas {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-info h3, .service-areas h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-info h3::after, .service-areas h3::after {
             content: '';
             position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: var(--secondary);
             bottom: 0;
             left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
         }
-        
-        .contact-info p {
-            margin-bottom: 10px;
+
+        .contact-info p, .service-areas p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-emergency {
             display: flex;
             align-items: center;
             gap: 10px;
+            padding: 12px 20px;
+            background: rgba(192, 57, 43, 0.3);
+            border-radius: 30px;
+            margin-top: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
-        
-        .contact-info a {
-            color: var(--white);
+
+        .footer-emergency-link {
+            color: var(--gold);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 700;
         }
-        
-        .contact-info a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
+
+        .area-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
         }
-        
-        .service-areas p {
-            line-height: 1.8;
-        }
-        
+
         .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
         }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .service-details {
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            width: 45px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .service-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .service-hero p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .header-container {
                 flex-direction: column;
-                align-items: center;
+                gap: 25px;
             }
             
-            .area-card {
-                width: 100%;
-                max-width: 500px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .header-main {
-                flex-wrap: wrap;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            nav {
-                width: 100%;
-                display: none;
-                margin-top: 15px;
-            }
-            
-            nav.active {
-                display: block;
+            .service-hero h1 {
+                font-size: 2.5rem;
             }
             
             nav ul {
-                flex-direction: column;
-                gap: 5px;
+                justify-content: center;
             }
             
-            nav a {
-                display: block;
-                padding: 10px;
-                text-align: center;
-                background-color: #f8f9fa;
-                border-radius: 4px;
-            }
-            
-            .emergency-banner-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 5px;
+            .service-area-container::before {
+                width: 80%;
             }
         }
-        
-        @media (max-width: 576px) {
-            .service-area h2 {
-                font-size: 2rem;
+
+        @media (max-width: 768px) {
+            .service-hero {
+                height: 50vh;
+                min-height: 400px;
             }
             
-            #serviceAreaMap {
-                height: 300px;
+            .service-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .service-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .location-input {
+                flex-direction: column;
+            }
+            
+            .service-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
             }
             
             .footer-content {
                 flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .contact-info h3::after, 
+            .service-areas h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .contact-info p, 
+            .service-areas p {
+                justify-content: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .logo-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.7rem;
+            }
+            
+            #serviceAreaMap {
+                height: 350px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section - Matched to Homepage -->
-    <header>
-        <div class="emergency-banner">
-            <div class="container">
-                <div class="emergency-banner-content">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>24/7 Emergency Services:</span>
-                    <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
+    <!-- Professional Header Banner with Enhanced Toolbox Texture -->
+    <div class="header-banner">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                </div>
+                <div class="logo-text">
+                    <h1>Sato's All Trade Solutions</h1>
+                    <p>Handyman & Auto Repair Experts</p>
                 </div>
             </div>
-        </div>
-        
-        <div class="container header-main">
-            <div class="logo-container">
-                <a href="index.html">
-                    <img src="https://via.placeholder.com/200x60/0056b3/ffffff?text=SATO'S" alt="Sato's All Trade Solutions" class="logo">
-                </a>
-            </div>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav id="mainNav">
+            <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="quote-form.html">Get Quote</a></li>
-                    <li><a href="service-area.html" class="active">Service Areas</a></li>
-                    <li><a href="tel:6086360095" class="emergency-link">Emergency Service</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="quote-form.html"><i class="fas fa-file-invoice-dollar"></i> Get Quote</a></li>
+                    <li><a href="service-area.html" class="active"><i class="fas fa-map-marker-alt"></i> Service Areas</a></li>
+                    <li><a href="tel:6086360095" class="emergency-link"><i class="fas fa-phone-alt"></i> Emergency</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
+
+    <!-- Hero Section for Service Areas -->
+    <section class="service-hero">
+        <div class="hero-content">
+            <h1>Our Service Areas</h1>
+            <p>Serving Northwest Illinois & Southern Wisconsin with Dedication and Care</p>
+        </div>
+    </section>
 
     <!-- Service Area Content -->
-    <main class="service-area-container">
-        <div class="container">
-            <section class="service-area">
-                <h2>Our Service Areas</h2>
+    <section class="service-area-container">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>Find Our Coverage</h2>
+                <p class="tagline">Reliable Repairs Throughout the Region</p>
+            </div>
+            
+            <div class="location-checker">
+                <h3><i class="fas fa-map-marked-alt"></i> Check If We Service Your Area</h3>
+                <div class="location-input">
+                    <input type="text" id="locationInput" placeholder="Enter your address or zip code">
+                    <button class="check-button" id="checkLocationBtn">
+                        <i class="fas fa-search-location"></i> Check Availability
+                    </button>
+                </div>
+                <div id="availabilityResult"></div>
+            </div>
 
-                <div class="location-checker">
-                    <h3>Check If We Service Your Area</h3>
-                    <div class="location-input">
-                        <input type="text" id="locationInput" placeholder="Enter your address">
-                        <button class="check-button" id="checkLocationBtn">Check Availability</button>
-                        <div id="availabilityResult"></div>
-                    </div>
+            <div id="serviceAreaMap"></div>
+
+            <div class="service-details">
+                <div class="area-card standard">
+                    <h3>Standard Service Area</h3>
+                    <ul>
+                        <li>25-mile radius from Lena, IL</li>
+                        <li>Madison metropolitan area</li>
+                        <li>No additional travel fee</li>
+                        <li>Next-day service available</li>
+                        <li>Priority scheduling</li>
+                        <li>Free estimates for all services</li>
+                        <li>Regular maintenance discounts</li>
+                    </ul>
                 </div>
 
-                <div id="serviceAreaMap"></div>
-
-                <div class="service-details">
-                    <div class="area-card standard">
-                        <h3>Standard Service Area</h3>
-                        <ul>
-                            <li>25-mile radius from Lena, IL</li>
-                            <li>Madison metropolitan area</li>
-                            <li>No additional travel fee</li>
-                            <li>Next-day service available</li>
-                            <li>Priority scheduling</li>
-                        </ul>
-                    </div>
-
-                    <div class="area-card extended">
-                        <h3>Extended Service Area</h3>
-                        <ul>
-                            <li>Up to 50 miles from service centers</li>
-                            <li>Travel fee may apply</li>
-                            <li>Subject to availability</li>
-                            <li>2-3 day service window</li>
-                            <li>Specialized service options</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section contact-info">
-                    <h3>Contact Us</h3>
-                    <p>
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:6086360095">(608) 636-0095</a>
-                    </p>
-                    <p>
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a>
-                    </p>
-                    <p>
-                        <i class="fas fa-clock"></i>
-                        24/7 Emergency Services
-                    </p>
-                </div>
-                
-                <div class="footer-section service-areas">
-                    <h3>Service Areas</h3>
-                    <p>Lena, IL | Madison, WI | Surrounding Areas</p>
-                    <p>Northern Illinois | Southern Wisconsin</p>
-                    <p>Rockford Metro | Freeport Area</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul style="list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 10px;"><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-                        <li style="margin-bottom: 10px;"><a href="quote-form.html" style="color: #fff; text-decoration: none;">Get Quote</a></li>
-                        <li style="margin-bottom: 10px;"><a href="service-area.html" style="color: #fff; text-decoration: none;">Service Areas</a></li>
-                        <li><a href="tel:6086360095" style="color: #fff; text-decoration: none;">Emergency Service</a></li>
+                <div class="area-card extended">
+                    <h3>Extended Service Area</h3>
+                    <ul>
+                        <li>Up to 50 miles from service centers</li>
+                        <li>Travel fee may apply</li>
+                        <li>Subject to availability</li>
+                        <li>2-3 day service window</li>
+                        <li>Specialized service options</li>
+                        <li>Emergency services available</li>
+                        <li>Commercial fleet discounts</li>
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bg">
+            <img src="SATOS-LOGO-RGB_01.png" alt="Sato's Logo Background">
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-logo-column">
+                <div class="footer-logo">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                </div>
+                <div class="slogan">Precision, Care, and Expertise in Every Repair</div>
+                <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
+            </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2025 Sato's All Trade Solutions LLC. All rights reserved.</p>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-phone"></i> <a href="tel:6086360095" class="footer-emergency-link">(608) 636-0095</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:Brandon@satosalltradesolutions.com">Brandon@satosalltradesolutions.com</a></p>
+                <p><i class="fas fa-clock"></i> 24/7 Emergency Service</p>
+                
+                <div class="footer-emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:6086360095" class="footer-emergency-link">Emergency: (608) 636-0095</a>
+                </div>
+            </div>
+            
+            <div class="service-areas">
+                <h3>Service Areas</h3>
+                <div class="area-badge">Serving Northwest Illinois & Southern Wisconsin</div>
+                <p class="tagline" style="margin-top: 25px; color: var(--gold);">Reliable Repairs for Your Home Haven and Journey</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sato's All Trade Solutions LLC. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
             </div>
         </div>
     </footer>
@@ -644,7 +928,7 @@
             new google.maps.Marker({
                 position: lena,
                 map: map,
-                title: "Lena, IL",
+                title: "Lena, IL - Service Center",
                 icon: {
                     url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
                 },
@@ -655,7 +939,7 @@
             new google.maps.Marker({
                 position: madison,
                 map: map,
-                title: "Madison, WI",
+                title: "Madison, WI - Service Center",
                 icon: {
                     url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
                 },
@@ -685,6 +969,26 @@
                 center: lena,
                 radius: 80467.2, // 50 miles in meters
             });
+            
+            // Add info windows to circles
+            const standardInfo = new google.maps.InfoWindow({
+                content: '<div style="padding:10px;"><strong>Standard Service Area</strong><br>25-mile radius from Lena, IL<br>No travel fees</div>'
+            });
+            
+            const extendedInfo = new google.maps.InfoWindow({
+                content: '<div style="padding:10px;"><strong>Extended Service Area</strong><br>Up to 50 miles from service centers<br>Travel fees may apply</div>'
+            });
+            
+            // Add click listeners to circles
+            standardCircle.addListener('click', function() {
+                standardInfo.setPosition(lena);
+                standardInfo.open(map);
+            });
+            
+            extendedCircle.addListener('click', function() {
+                extendedInfo.setPosition(lena);
+                extendedInfo.open(map);
+            });
         }
         
         // Check if location is within service area
@@ -693,7 +997,7 @@
             const resultDiv = document.getElementById("availabilityResult");
             
             if (!address) {
-                resultDiv.textContent = "Please enter an address.";
+                resultDiv.textContent = "Please enter an address or zip code.";
                 resultDiv.className = "";
                 return;
             }
@@ -703,10 +1007,10 @@
             const isAvailable = Math.random() > 0.3;
             
             if (isAvailable) {
-                resultDiv.textContent = "✅ Great news! We service your area.";
+                resultDiv.innerHTML = '<i class="fas fa-check-circle"></i> Great news! We service your area.';
                 resultDiv.className = "available";
             } else {
-                resultDiv.textContent = "⚠️ Currently, we don't service your area. Contact us for special arrangements.";
+                resultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Currently, we don\'t service your area. Contact us for special arrangements.';
                 resultDiv.className = "unavailable";
             }
         }
@@ -718,18 +1022,16 @@
             // Add event listeners
             document.getElementById("checkLocationBtn").addEventListener("click", checkServiceAvailability);
             
-            // Mobile menu toggle
-            document.getElementById("mobileMenuBtn").addEventListener("click", function() {
-                const nav = document.getElementById("mainNav");
-                nav.classList.toggle("active");
-            });
-            
             // Allow Enter key to trigger location check
             document.getElementById("locationInput").addEventListener("keypress", function(e) {
                 if (e.key === "Enter") {
                     checkServiceAvailability();
                 }
             });
+            
+            // Add current year to footer
+            const currentYear = new Date().getFullYear();
+            document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
         };
     </script>
 </body>
