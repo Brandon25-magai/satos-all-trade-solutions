@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sato's All Trade Solutions - Handyman & Auto Repair Services</title>
+    <title>Sato's All Trade Solutions - Professional Handyman & Auto Repair</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #0a4a6f;
             --secondary: #e67e22;
             --accent: #16a085;
-            --light: #f8f9fa;
             --dark: #2c3e50;
-            --gray: #7f8c8d;
-            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --light: #f8f9fa;
+            --emergency: #c0392b;
+            --gold: #FFD700;
+            --shadow: 0 4px 20px rgba(0,0,0,0.12);
             --transition: all 0.3s ease;
         }
 
@@ -21,62 +23,134 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f5f7fa;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Emergency Bar - Improved Contrast */
-        .emergency-bar {
-            background: linear-gradient(to right, #8B0000, #c0392b);
+        /* Enhanced Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, var(--emergency) 0%, #8B0000 100%);
             color: white;
-            padding: 15px 0;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            padding: 14px 0;
             position: relative;
             z-index: 100;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .emergency-banner::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 150%;
+            height: 150%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 25%);
+            transform: rotate(-5deg);
+            z-index: -1;
+        }
+
+        .emergency-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .emergency-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.15rem;
+            font-weight: 600;
             letter-spacing: 0.5px;
         }
 
+        .emergency-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
         .emergency-link {
-            color: #FFD700;
+            color: var(--gold);
             text-decoration: none;
             font-weight: 700;
             margin-left: 8px;
             padding: 5px 15px;
-            border-radius: 4px;
-            background: rgba(0,0,0,0.3);
+            border-radius: 30px;
+            background: rgba(0,0,0,0.25);
             transition: var(--transition);
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,215,0,0.3);
         }
 
         .emergency-link:hover {
-            background: rgba(0,0,0,0.4);
-            text-decoration: underline;
+            background: rgba(0,0,0,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        header {
-            background: white;
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--emergency);
+            transform: translateY(-3px);
+        }
+
+        /* Enhanced Header Banner */
+        .header-banner {
+            background: linear-gradient(135deg, white 0%, #f5f7fa 100%);
             box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(10,74,111,0.1);
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 20px;
+            position: relative;
         }
 
         .logo-container {
@@ -92,63 +166,130 @@
             border: 3px solid var(--secondary);
             padding: 5px;
             background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
             transition: transform 0.3s ease;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: "";
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(transparent, rgba(230,126,34,0.2), transparent);
+            animation: rotate 6s linear infinite;
+        }
+
+        .logo img {
+            position: relative;
+            max-height: 80px;
+            max-width: 80px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
         }
 
         .logo:hover {
             transform: scale(1.05);
         }
 
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
         .logo-text h1 {
-            font-size: 1.9rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--primary);
             margin-bottom: 5px;
             letter-spacing: -0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .logo-text p {
             color: var(--secondary);
-            font-weight: 500;
+            font-weight: 600;
             font-style: italic;
             font-size: 1.1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-text p::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
         }
 
         nav ul {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             list-style: none;
             flex-wrap: wrap;
+        }
+
+        nav li {
+            position: relative;
         }
 
         nav a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 4px;
+            padding: 12px 20px;
+            border-radius: 30px;
             transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 1.05rem;
+            background: rgba(10,74,111,0.05);
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(10,74,111,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
         nav a:hover {
             background: var(--primary);
             color: white;
+            box-shadow: 0 5px 15px rgba(10,74,111,0.2);
+        }
+
+        nav a:hover::before {
+            transform: translateX(100%);
         }
 
         nav a i {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
 
         /* Hero Section */
         .hero {
             position: relative;
-            height: 75vh;
-            min-height: 550px;
+            height: 80vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,6 +297,7 @@
             background: linear-gradient(rgba(10, 74, 111, 0.85), rgba(10, 74, 111, 0.95)), 
                         url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
             margin-bottom: 60px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
         .hero-content {
@@ -168,10 +310,13 @@
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 25px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
             line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .hero p {
@@ -181,6 +326,7 @@
             margin-left: auto;
             margin-right: auto;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-weight: 300;
         }
 
         .cta-buttons {
@@ -195,21 +341,22 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 16px 35px;
+            padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.2rem;
             transition: var(--transition);
             border: 2px solid transparent;
-            min-width: 220px;
+            min-width: 240px;
             justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .cta-button:not(.emergency) {
             background: var(--secondary);
             color: white;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
         }
 
         .cta-button:not(.emergency):hover {
@@ -221,7 +368,6 @@
         .cta-button.emergency {
             background: #e74c3c;
             color: white;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
             animation: pulse 1.5s infinite;
         }
 
@@ -231,174 +377,52 @@
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
 
+        /* Animations */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
             100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
         }
 
-        /* Services Section with Watermarked Logo */
-        .services-section {
-            position: relative;
-            padding: 80px 5%;
-            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
-            overflow: hidden;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .services-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('SATOS-LOGO-RGB_01.png') no-repeat center;
-            background-size: 40%;
-            opacity: 0.08;
-            z-index: 1;
+        /* Content styles */
+        .content {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
         }
-
-        .services-container {
-            position: relative;
-            z-index: 2;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .services-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .services-title h2 {
-            font-size: 2.6rem;
+        
+        .content h2 {
+            font-family: 'Montserrat', sans-serif;
             color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
             position: relative;
-            display: inline-block;
             padding-bottom: 15px;
-            margin-bottom: 15px;
         }
-
-        .services-title h2::after {
+        
+        .content h2::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
+            left: 0;
+            width: 80px;
+            height: 4px;
             background: var(--secondary);
-            border-radius: 3px;
+            border-radius: 2px;
         }
-
-        .services-title p {
-            font-size: 1.3rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .services {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .service-card {
-            flex: 1;
-            min-width: 320px;
-            padding: 40px 35px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.85);
-            border-top: 5px solid;
-            z-index: 3;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            background: white;
-        }
-
-        .service-card.handyman {
-            border-color: var(--primary);
-        }
-
-        .service-card.automotive {
-            border-color: #e74c3c;
-        }
-
-        .service-icon {
-            height: 90px;
-            width: 90px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.3rem;
-            margin: 0 auto 25px;
-            color: white;
-        }
-
-        .service-card.handyman .service-icon {
-            background: var(--primary);
-        }
-
-        .service-card.automotive .service-icon {
-            background: #e74c3c;
-        }
-
-        .service-card h2 {
-            color: var(--dark);
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        .service-card ul {
-            list-style: none;
-            margin-bottom: 35px;
-        }
-
-        .service-card li {
-            padding: 12px 0;
-            border-bottom: 1px dashed #ddd;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        
+        .content p {
+            margin-bottom: 20px;
             font-size: 1.1rem;
-        }
-
-        .service-card li i {
-            color: var(--secondary);
-            min-width: 25px;
-        }
-
-        .service-button {
-            display: block;
-            text-align: center;
-            padding: 14px 25px;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: var(--transition);
-            margin-top: 20px;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .service-button:hover {
-            background: #d35400;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.3);
+            line-height: 1.8;
         }
 
         /* Footer */
@@ -406,6 +430,8 @@
             background: var(--dark);
             color: white;
             padding: 60px 5% 20px;
+            margin-top: 80px;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
         }
 
         .footer-content {
@@ -414,7 +440,7 @@
             gap: 50px;
             margin-bottom: 40px;
             max-width: 1300px;
-            margin: 0 auto 40px;
+            margin: 50px auto 40px;
         }
 
         .footer-logo {
@@ -450,6 +476,7 @@
             color: var(--secondary);
             position: relative;
             padding-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .contact-info h3::after, .service-areas h3::after {
@@ -532,24 +559,24 @@
                 gap: 25px;
             }
             
+            .emergency-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
-            .services {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .service-card {
-                width: 100%;
-                max-width: 500px;
+            nav ul {
+                justify-content: center;
             }
         }
 
         @media (max-width: 700px) {
             .hero {
-                height: 80vh;
+                height: 85vh;
             }
             
             .hero h1 {
@@ -601,10 +628,6 @@
         }
 
         @media (max-width: 500px) {
-            .hero {
-                height: 85vh;
-            }
-            
             .logo-container {
                 flex-direction: column;
                 text-align: center;
@@ -613,25 +636,38 @@
             .logo-text h1 {
                 font-size: 1.7rem;
             }
-            
-            .services-title h2 {
-                font-size: 2.2rem;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Emergency Bar - Improved Contrast -->
-    <div class="emergency-bar">
-        <i class="fas fa-exclamation-circle"></i> 24/7 Emergency Services: 
-        <a href="tel:6086360095" class="emergency-link">(608) 636-0095</a>
+    <!-- Enhanced Emergency Banner -->
+    <div class="emergency-banner">
+        <div class="emergency-container">
+            <div class="emergency-content">
+                <div class="emergency-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <span>24/7 Emergency Services:</span>
+                <a href="tel:6086360095" class="emergency-link">
+                    <i class="fas fa-phone-alt"></i> (608) 636-0095
+                </a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+            </div>
+        </div>
     </div>
 
-    <!-- Header -->
-    <header>
+    <!-- Enhanced Header Banner -->
+    <div class="header-banner">
         <div class="header-container">
             <div class="logo-container">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="logo">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/80x80?text=SA" alt="Sato's All Trade Solutions">
+                </div>
                 <div class="logo-text">
                     <h1>Sato's All Trade Solutions</h1>
                     <p>Handyman & Auto Repair Experts</p>
@@ -644,74 +680,39 @@
                     <li><a href="quote-form.html"><i class="fas fa-file-invoice-dollar"></i> Get Quote</a></li>
                     <li><a href="service-area.html"><i class="fas fa-map-marker-alt"></i> Service Areas</a></li>
                     <li><a href="gallery.html"><i class="fas fa-photo-video"></i> Our Work</a></li>
-                    <li><a href="tel:6086360095" class="emergency-link"><i class="fas fa-phone-alt"></i> Emergency Service</a></li>
+                    <li><a href="tel:6086360095" class="emergency-link"><i class="fas fa-phone-alt"></i> Emergency</a></li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Your Trusted Handyman & Auto Repair Expert</h1>
-            <p>Serving Lena, IL, Madison, and surrounding areas with pride since 2003</p>
+            <h1>Professional Handyman & Auto Repair Services</h1>
+            <p>Serving Northwest Illinois & Southern Wisconsin with pride since 2003</p>
             <div class="cta-buttons">
                 <a href="quote-form.html" class="cta-button"><i class="fas fa-file-invoice-dollar"></i> Get a Free Quote</a>
-                <a href="book-appointment.html" class="cta-button"><i class="fas fa-calendar-check"></i> Check Availability</a>
                 <a href="tel:6086360095" class="cta-button emergency"><i class="fas fa-phone-alt"></i> Emergency Service</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section with Watermarked Logo -->
-    <section class="services-section">
-        <div class="services-container">
-            <div class="services-title">
-                <h2>Our Professional Services</h2>
-                <p>Quality workmanship guaranteed with 20 years of experience</p>
-            </div>
-            
-            <div class="services">
-                <div class="service-card handyman">
-                    <div class="service-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h2>Handyman Services</h2>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> General Home Repairs</li>
-                        <li><i class="fas fa-check-circle"></i> Drywall & Painting</li>
-                        <li><i class="fas fa-check-circle"></i> Property Maintenance</li>
-                        <li><i class="fas fa-check-circle"></i> Light Plumbing & Electrical</li>
-                        <li><i class="fas fa-check-circle"></i> Door & Window Repairs</li>
-                        <li><i class="fas fa-check-circle"></i> Emergency Repairs</li>
-                    </ul>
-                    <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
-                </div>
-
-                <div class="service-card automotive">
-                    <div class="service-icon">
-                        <i class="fas fa-car-alt"></i>
-                    </div>
-                    <h2>Automotive Services</h2>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Vehicle Diagnostics</li>
-                        <li><i class="fas fa-check-circle"></i> Brake Services</li>
-                        <li><i class="fas fa-check-circle"></i> Pre-Purchase Inspections</li>
-                        <li><i class="fas fa-check-circle"></i> Brake Controller Installation</li>
-                        <li><i class="fas fa-check-circle"></i> Seasonal Vehicle Checks</li>
-                        <li><i class="fas fa-check-circle"></i> Emergency Services</li>
-                    </ul>
-                    <a href="quote-form.html" class="service-button">Get Quote <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Content Section -->
+    <div class="content">
+        <h2>Why Choose Sato's All Trade Solutions?</h2>
+        <p>With over 20 years of experience, we provide top-quality handyman and auto repair services to residential and commercial clients throughout Northwest Illinois and Southern Wisconsin. Our team of skilled professionals is committed to excellence in every project we undertake.</p>
+        
+        <p>We pride ourselves on our attention to detail, timely service, and competitive pricing. Whether you need a small home repair, a complete renovation, or automotive maintenance, we have the expertise to get the job done right the first time.</p>
+        
+        <p>Our emergency services are available 24/7, so you can have peace of mind knowing that help is just a phone call away whenever you need it most.</p>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions" class="footer-logo">
+                <img src="https://via.placeholder.com/180x80?text=SA" alt="Sato's All Trade Solutions" class="footer-logo">
                 <div class="slogan">One Call Fixes It All!</div>
             </div>
             
@@ -740,7 +741,7 @@
     </footer>
 
     <script>
-        // Simple JavaScript to handle form submissions if needed
+        // Simple JavaScript for animations
         document.addEventListener('DOMContentLoaded', function() {
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -758,6 +759,19 @@
             // Add current year to footer
             const currentYear = new Date().getFullYear();
             document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
+            
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.service-card, .cta-button').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
