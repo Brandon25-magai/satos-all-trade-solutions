@@ -871,139 +871,140 @@
     </footer>
 
     <script>
-        // Initialize Google Map
-        function initMap() {
-            // Set coordinates for Lena, IL
-           const mapCenter = { lat: 43.05, lng: -89.35 };
-            
-            // Create the map
-         const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
-    zoom: 9,
-    center: mapCenter,
-                zoom: 9,
-                center: lena,
-                styles: [
-                    {
-                        featureType: "administrative",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#444444" }],
-                    },
-                    {
-                        featureType: "landscape",
-                        elementType: "all",
-                        stylers: [{ color: "#f2f2f2" }],
-                    },
-                    {
-                        featureType: "poi",
-                        elementType: "all",
-                        stylers: [{ visibility: "off" }],
-                    },
-                    {
-                        featureType: "road",
-                        elementType: "all",
-                        stylers: [{ saturation: -100 }, { lightness: 45 }],
-                    },
-                    {
-                        featureType: "road.highway",
-                        elementType: "all",
-                        stylers: [{ visibility: "simplified" }],
-                    },
-                    {
-                        featureType: "road.arterial",
-                        elementType: "labels.icon",
-                        stylers: [{ visibility: "off" }],
-                    },
-                    {
-                        featureType: "transit",
-                        elementType: "all",
-                        stylers: [{ visibility: "off" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "all",
-                        stylers: [{ color: "#d1e8ff" }, { visibility: "on" }],
-                    },
-                ],
-            });
-            
-            // Add marker for Lena, IL
-            new google.maps.Marker({
-                position: lena,
-                map: map,
-                title: "Lena, IL - Service Center",
-                icon: {
-                    url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+    // Initialize Google Map
+    function initMap() {
+        // Set coordinates for new center point
+        const mapCenter = { lat: 43.05, lng: -89.35 };
+        const lena = { lat: 42.379, lng: -89.822 };
+        const madison = { lat: 43.073, lng: -89.401 };
+        const fitchburg = { lat: 43.002, lng: -89.424 };
+        
+        // Create the map
+        const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
+            zoom: 9,
+            center: mapCenter,
+            styles: [
+                {
+                    featureType: "administrative",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#444444" }],
                 },
-            });
-            
-            // Add marker for Madison, WI
-            const madison = { lat: 43.073, lng: -89.401 };
-            new google.maps.Marker({
-                position: madison,
-                map: map,
-                title: "Madison, WI - Service Center",
-                icon: {
-                    url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                {
+                    featureType: "landscape",
+                    elementType: "all",
+                    stylers: [{ color: "#f2f2f2" }],
                 },
-            });
-
-            // Add marker for Fitchburg, WI
-const fitchburg = { lat: 43.002, lng: -89.424 };
-new google.maps.Marker({
-    position: fitchburg,
-    map: map,
-    title: "Fitchburg, WI - Service Area",
-    icon: {
-        url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
-    },
-});
-                // ... (existing circle drawing code remains unchanged) ...
-}
-            // Draw service areas
-            // Standard service area (25 miles from Lena)
-            const standardCircle = new google.maps.Circle({
-                strokeColor: "#28a745",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#28a745",
-                fillOpacity: 0.2,
-                map: map,
-                center: lena,
-                radius: 40233.6, // 25 miles in meters
-            });
-            
-            // Extended service area (50 miles from Lena)
-            const extendedCircle = new google.maps.Circle({
-                strokeColor: "#ffc107",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#ffc107",
-                fillOpacity: 0.1,
-                map: map,
-                center: lena,
-                radius: 80467.2, // 50 miles in meters
-            });
-            
-            // Add info windows to circles
-            const standardInfo = new google.maps.InfoWindow({
-                content: '<div style="padding:10px;"><strong>Standard Service Area</strong><br>25-mile radius from Lena, IL<br>No travel fees</div>'
-            });
-            
-            const extendedInfo = new google.maps.InfoWindow({
-                content: '<div style="padding:10px;"><strong>Extended Service Area</strong><br>Up to 50 miles from service centers<br>Travel fees may apply</div>'
-            });
-            
-            // Add click listeners to circles
-            standardCircle.addListener('click', function() {
-                standardInfo.setPosition(lena);
-                standardInfo.open(map);
-            });
-            
-            extendedCircle.addListener('click', function() {
-                extendedInfo.setPosition(lena);
-                extendedInfo.open(map);
-            });
-        }
+                {
+                    featureType: "poi",
+                    elementType: "all",
+                    stylers: [{ visibility: "off" }],
+                },
+                {
+                    featureType: "road",
+                    elementType: "all",
+                    stylers: [{ saturation: -100 }, { lightness: 45 }],
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "all",
+                    stylers: [{ visibility: "simplified" }],
+                },
+                {
+                    featureType: "road.arterial",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }],
+                },
+                {
+                    featureType: "transit",
+                    elementType: "all",
+                    stylers: [{ visibility: "off" }],
+                },
+                {
+                    featureType: "water",
+                    elementType: "all",
+                    stylers: [{ color: "#d1e8ff" }, { visibility: "on" }],
+                },
+            ],
+        });
+        
+        // Add marker for Lena, IL
+        new google.maps.Marker({
+            position: lena,
+            map: map,
+            title: "Lena, IL - Service Center",
+            icon: {
+                url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            },
+        });
+        
+        // Add marker for Madison, WI
+        new google.maps.Marker({
+            position: madison,
+            map: map,
+            title: "Madison, WI - Service Center",
+            icon: {
+                url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+            },
+        });
+        
+        // Add marker for Fitchburg, WI
+        new google.maps.Marker({
+            position: fitchburg,
+            map: map,
+            title: "Fitchburg, WI - Service Area",
+            icon: {
+                url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+            },
+        });
+        
+        // Draw service areas
+        // Standard service area (25 miles from Lena)
+        const standardCircle = new google.maps.Circle({
+            strokeColor: "#28a745",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#28a745",
+            fillOpacity: 0.2,
+            map: map,
+            center: lena,
+            radius: 40233.6, // 25 miles in meters
+        });
+        
+        // Extended service area (50 miles from Lena)
+        const extendedCircle = new google.maps.Circle({
+            strokeColor: "#ffc107",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#ffc107",
+            fillOpacity: 0.1,
+            map: map,
+            center: lena,
+            radius: 80467.2, // 50 miles in meters
+        });
+        
+        // Add info windows to circles
+        const standardInfo = new google.maps.InfoWindow({
+            content: '<div style="padding:10px;"><strong>Standard Service Area</strong><br>25-mile radius from Lena, IL<br>No travel fees</div>'
+        });
+        
+        const extendedInfo = new google.maps.InfoWindow({
+            content: '<div style="padding:10px;"><strong>Extended Service Area</strong><br>Up to 50 miles from service centers<br>Travel fees may apply</div>'
+        });
+        
+        // Add click listeners to circles
+        standardCircle.addListener('click', function() {
+            standardInfo.setPosition(lena);
+            standardInfo.open(map);
+        });
+        
+        extendedCircle.addListener('click', function() {
+            extendedInfo.setPosition(lena);
+            extendedInfo.open(map);
+        });
+    }
+    
+    // ... rest of the script remains the same ...
+</script>
         
         // Check if location is within service area
         function checkServiceAvailability() {
