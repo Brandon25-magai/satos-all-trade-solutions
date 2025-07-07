@@ -915,7 +915,7 @@
         <div class="header-container">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                    <img src="https://satosalltradesolutionscom.netlify.app/SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
                 </div>
                 <div class="logo-text">
                     <h1>Sato's All Trade Solutions</h1>
@@ -1126,7 +1126,7 @@
         <div class="footer-content">
             <div class="footer-logo-column">
                 <div class="footer-logo">
-                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
+                    <img src="https://satosalltradesolutionscom.netlify.app/SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
                 </div>
                 <div class="slogan">Precision, Care, and Expertise in Every Repair</div>
                 <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
@@ -1217,13 +1217,27 @@
             });
             
             // Check zip code button
-            checkZipBtn.addEventListener('click', function() {
+            checkZipBtn.addEventListener('click', checkZipCode);
+            
+            // Also allow Enter key to trigger zip code check
+            zipCodeInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    checkZipCode();
+                }
+            });
+            
+            function checkZipCode() {
                 const zipCode = zipCodeInput.value.trim();
                 
-                if (!zipCode || isNaN(zipCode) {
+                // Reset status
+                zipCodeStatus.style.display = "none";
+                
+                if (!zipCode || isNaN(zipCode)) {
                     zipCodeStatus.textContent = "Please enter a valid zip code";
                     zipCodeStatus.className = "form-status error";
                     zipCodeStatus.style.display = "block";
+                    hideFormSections();
                     return;
                 }
                 
@@ -1241,6 +1255,7 @@
                     zipCodeStatus.textContent = "Sorry, we don't currently serve this area";
                     zipCodeStatus.className = "form-status error";
                     zipCodeStatus.style.display = "block";
+                    hideFormSections();
                     return;
                 }
                 
@@ -1259,16 +1274,26 @@
                     lenaPricing.style.display = 'none';
                 }
                 
+                // Store location in data attribute for calculations
+                pricingInfo.dataset.location = location;
+                
                 // Show form sections
                 serviceTypeGroup.style.display = 'block';
                 durationGroup.style.display = 'block';
                 discountGroup.style.display = 'block';
                 projectDetailsGroup.style.display = 'block';
                 submitBtn.style.display = 'flex';
-                
-                // Store location in data attribute for calculations
-                pricingInfo.dataset.location = location;
-            });
+            }
+            
+            function hideFormSections() {
+                serviceTypeGroup.style.display = 'none';
+                durationGroup.style.display = 'none';
+                discountGroup.style.display = 'none';
+                projectDetailsGroup.style.display = 'none';
+                submitBtn.style.display = 'none';
+                pricingInfo.style.display = 'none';
+                priceEstimate.style.display = 'none';
+            }
             
             // Update price when inputs change
             serviceHours.addEventListener('input', updatePriceEstimate);
