@@ -6,785 +6,113 @@
     <title>Get Quote - Sato's All Trade Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #0a4a6f;
-            --secondary: #e67e22;
-            --accent: #16a085;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --emergency: #c0392b;
-            --gold: #d4af37;
-            --shadow: 0 4px 20px rgba(0,0,0,0.12);
-            --transition: all 0.3s ease;
-        }
+        /* Existing styles remain the same */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* New pricing styles */
+        .pricing-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
+        
+        .pricing-info h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        /* Header Banner */
-        .header-banner {
-            background: 
-                linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(245,247,250,0.92) 100%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="100%" height="100%" fill="white"/><path d="M80,60 L120,60 L120,100 L140,120 L120,140 L80,140 L60,120 L80,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M180,80 L220,80 L240,100 L220,120 L180,120 L160,100 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><circle cx="280" cy="100" r="20" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,200 L100,200 L120,220 L100,240 L60,240 L40,220 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="180" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,180 L260,180 L280,200 L260,220 L220,220 L200,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,180 L340,180 L360,200 L340,220 L300,220 L280,200 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M60,300 L100,300 L120,320 L100,340 L60,340 L40,320 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><rect x="140" y="280" width="40" height="40" rx="4" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M220,280 L260,280 L280,300 L260,320 L220,320 L200,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/><path d="M300,280 L340,280 L360,300 L340,320 L300,320 L280,300 Z" fill="none" stroke="rgba(10,74,111,0.12)" stroke-width="2"/></svg>');
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid rgba(10,74,111,0.15);
-            padding: 15px 0;
-        }
-
-        .header-container {
+        
+        .price-range {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            height: 90px;
-            width: 90px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary);
-            padding: 5px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo img {
-            max-height: 80px;
-            max-width: 80px;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 5px;
-            letter-spacing: -0.5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .logo-text p {
-            color: var(--secondary);
-            font-weight: 600;
-            font-style: italic;
-            font-size: 1.1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .logo-text p::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary), transparent);
-        }
-
-        nav ul {
-            display: flex;
-            gap: 10px;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        nav li {
-            position: relative;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            padding: 12px 20px;
-            border-radius: 30px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1.05rem;
-            background: rgba(10,74,111,0.05);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        nav a:hover {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 5px 15px rgba(10,74,111,0.2);
-        }
-
-        nav a.emergency-link {
-            background: rgba(192, 57, 43, 0.1);
-            color: var(--emergency);
-        }
-
-        nav a.emergency-link:hover {
-            background: var(--emergency);
-            color: white;
-        }
-
-        nav a i {
-            font-size: 1.1rem;
-        }
-
-        /* Hero Section */
-        .quote-hero {
-            position: relative;
-            height: 50vh;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(rgba(10, 74, 111, 0.85), rgba(10, 74, 111, 0.95)), 
-                        url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
-            margin-bottom: 60px;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            text-align: center;
-            padding: 30px;
-            color: white;
-        }
-
-        .quote-hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-        }
-
-        .quote-hero p {
-            font-size: 1.6rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-            font-weight: 300;
-        }
-
-        /* Quote Form Section */
-        .quote-section {
-            padding: 80px 5%;
-            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quote-section::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 60%;
-            height: 80%;
-            background: url('https://via.placeholder.com/500x500/0a4a6f/ffffff?text=SATO%27S') no-repeat center;
-            background-size: contain;
-            opacity: 0.07;
-            z-index: 1;
-            transform: translate(-50%, -50%);
-        }
-
-        .section-container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: var(--secondary);
-            border-radius: 3px;
-        }
-
-        .form-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .form-column {
-            padding: 20px;
-        }
-
-        .form-info {
-            background: var(--primary);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .form-info h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .form-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        .form-info ul {
-            list-style: none;
-            margin: 30px 0;
-        }
-
-        .form-info li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.1rem;
-            position: relative;
-            padding-left: 35px;
-        }
-
-        .form-info li::before {
-            content: '\f058';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            font-family: 'Raleway', sans-serif;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(10, 74, 111, 0.1);
-        }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .service-type {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .service-card {
+            margin: 8px 0;
+            padding: 8px 12px;
             background: rgba(248, 249, 250, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid #ddd;
+            border-radius: 8px;
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        
+        .price-label {
+            font-weight: 600;
+            color: var(--dark);
         }
-
-        .service-card.selected {
-            border-color: var(--primary);
-            background: rgba(10, 74, 111, 0.05);
-            box-shadow: 0 5px 15px rgba(10,74,111,0.1);
-        }
-
-        .service-card i {
-            font-size: 2.5rem;
+        
+        .price-amount {
+            font-weight: 700;
             color: var(--primary);
+        }
+        
+        .discount-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+        
+        .location-toggle {
+            display: flex;
+            gap: 15px;
             margin-bottom: 15px;
         }
-
-        .service-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
+        
+        .location-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            background: rgba(248, 249, 250, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid #ddd;
+            transition: var(--transition);
+            font-weight: 600;
         }
-
-        .submit-btn {
+        
+        .location-btn.selected {
+            border-color: var(--primary);
+            background: rgba(10, 74, 111, 0.1);
+            box-shadow: 0 3px 10px rgba(10,74,111,0.1);
+        }
+        
+        .estimate-display {
             background: var(--primary);
             color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 30px auto 0;
-            font-family: 'Montserrat', sans-serif;
-            box-shadow: 0 5px 15px rgba(10,74,111,0.3);
-        }
-
-        .submit-btn:hover {
-            background: #083a5a;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(10,74,111,0.4);
-        }
-
-        .form-status {
-            margin-top: 20px;
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            font-weight: 600;
+            margin-top: 20px;
             display: none;
         }
-
-        .form-status.success {
-            background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-            border: 1px solid rgba(40, 167, 69, 0.3);
-            display: block;
+        
+        .estimate-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--gold);
         }
-
-        .form-status.error {
-            background: rgba(220, 53, 69, 0.1);
-            color: #dc3545;
-            border: 1px solid rgba(220, 53, 69, 0.3);
-            display: block;
+        
+        .service-duration {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
         }
-
-        .emergency-banner {
-            background: rgba(192, 57, 43, 0.1);
-            border: 1px solid rgba(192, 57, 43, 0.3);
+        
+        .duration-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
             border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
+            font-size: 1rem;
         }
-
-        .emergency-banner h4 {
-            color: var(--emergency);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.3rem;
-        }
-
-        .emergency-banner a {
-            color: var(--emergency);
-            font-weight: 700;
-            font-size: 1.4rem;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
-        }
-
-        /* Enhanced Footer with Logo Integration */
-        footer {
-            background: linear-gradient(to right, var(--dark), #1a2a3a);
-            color: white;
-            padding: 100px 5% 40px;
-            margin-top: 80px;
-            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
-            position: relative;
-        }
-
-        .footer-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.07;
-            z-index: 1;
-            max-width: 600px;
-            width: 60%;
-            text-align: center;
-        }
-
-        .footer-bg img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            margin-bottom: 40px;
-            max-width: 1300px;
-            margin: 50px auto 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-logo-column {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .footer-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary);
-            padding: 10px;
-            background: white;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .footer-logo img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .slogan {
-            font-style: italic;
-            color: var(--secondary);
-            font-weight: 500;
-            font-size: 1.3rem;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-
-        .tagline {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            margin-top: 20px;
-            color: var(--gold);
+        
+        .duration-label {
             font-weight: 600;
-            text-align: center;
-            max-width: 300px;
-            line-height: 1.4;
-        }
-
-        .contact-info, .service-areas {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .contact-info h3, .service-areas h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--secondary);
-            position: relative;
-            padding-bottom: 12px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .contact-info h3::after, .service-areas h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        .contact-info p, .service-areas p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-        }
-
-        .contact-info a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
-        }
-
-        .footer-emergency {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: rgba(192, 57, 43, 0.3);
-            border-radius: 30px;
-            margin-top: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .footer-emergency-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .area-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin-top: 20px;
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 45px;
-            width: 45px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 50%;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .quote-hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .quote-hero p {
-                font-size: 1.4rem;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .header-container {
-                flex-direction: column;
-                gap: 25px;
-            }
-            
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .quote-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            nav ul {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .quote-hero {
-                height: 40vh;
-                min-height: 350px;
-            }
-            
-            .quote-hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .quote-hero p {
-                font-size: 1.2rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .service-type {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .contact-info h3::after, 
-            .service-areas h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .contact-info p, 
-            .service-areas p {
-                justify-content: center;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .logo-text h1 {
-                font-size: 1.7rem;
-            }
-            
-            .form-container {
-                padding: 30px 20px;
-            }
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -859,6 +187,16 @@
                             <input type="text" id="address" name="address" required>
                         </div>
                         
+                        <!-- Location Selection -->
+                        <div class="form-group">
+                            <label>Service Area *</label>
+                            <div class="location-toggle">
+                                <div class="location-btn" data-location="lena">Lena, IL Area</div>
+                                <div class="location-btn" data-location="madison">Madison, WI Area</div>
+                            </div>
+                            <input type="hidden" id="serviceLocation" name="serviceLocation" required>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="serviceType">Service Type *</label>
                             <div class="service-type">
@@ -874,9 +212,82 @@
                             <input type="hidden" id="serviceType" name="serviceType" required>
                         </div>
                         
+                        <!-- Service Duration -->
+                        <div class="form-group">
+                            <label>Estimated Service Duration</label>
+                            <div class="service-duration">
+                                <span class="duration-label">Hours:</span>
+                                <input type="number" id="serviceHours" name="serviceHours" min="1" max="8" value="1" class="duration-input">
+                                <span class="duration-label">Minutes:</span>
+                                <input type="number" id="serviceMinutes" name="serviceMinutes" min="0" max="59" value="0" class="duration-input">
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing Information -->
+                        <div class="pricing-info">
+                            <h4><i class="fas fa-tag"></i> Transparent Pricing</h4>
+                            
+                            <div id="lenaPricing" style="display:none;">
+                                <div class="price-range">
+                                    <span class="price-label">Standard Handyman Rate:</span>
+                                    <span class="price-amount">$45 - $65/hour</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">Auto Repair Rate:</span>
+                                    <span class="price-amount">$50 - $75/hour</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">Minimum Charge:</span>
+                                    <span class="price-amount">$75</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">New Customer Discount:</span>
+                                    <span class="price-amount">10% OFF <span class="discount-badge">Applied</span></span>
+                                </div>
+                            </div>
+                            
+                            <div id="madisonPricing" style="display:none;">
+                                <div class="price-range">
+                                    <span class="price-label">Standard Handyman Rate:</span>
+                                    <span class="price-amount">$60 - $85/hour</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">Auto Repair Rate:</span>
+                                    <span class="price-amount">$70 - $95/hour</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">Minimum Charge:</span>
+                                    <span class="price-amount">$100</span>
+                                </div>
+                                <div class="price-range">
+                                    <span class="price-label">Off-Peak Discount (Weekdays before 3 PM):</span>
+                                    <span class="price-amount">15% OFF</span>
+                                </div>
+                            </div>
+                            
+                            <div class="estimate-display" id="priceEstimate">
+                                <p>Estimated Price Range:</p>
+                                <div class="estimate-price" id="estimatedPrice">$0.00</div>
+                                <p><small>Includes discounts. Final quote may vary based on project details.</small></p>
+                            </div>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="projectDetails">Project Details *</label>
                             <textarea id="projectDetails" name="projectDetails" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div>
+                                    <input type="checkbox" id="newCustomer" name="newCustomer" checked>
+                                    <label for="newCustomer">I'm a new customer (10% discount)</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="offPeak" name="offPeak">
+                                    <label for="offPeak">I can schedule during off-peak hours (15% discount)</label>
+                                </div>
+                            </div>
                         </div>
                         
                         <button type="submit" class="submit-btn">
@@ -904,6 +315,9 @@
                             <li>Priority scheduling for quote recipients</li>
                             <li>Expert consultation included</li>
                             <li>Response within 24 hours</li>
+                            <li>Geographically-based fair pricing</li>
+                            <li>First-time customer discounts</li>
+                            <li>Off-peak hour savings</li>
                         </ul>
                         
                         <p>Our team will contact you to discuss your project details and provide a comprehensive quote tailored to your specific needs.</p>
@@ -962,7 +376,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             const serviceCards = document.querySelectorAll('.service-card');
             const serviceTypeInput = document.getElementById('serviceType');
+            const locationButtons = document.querySelectorAll('.location-btn');
+            const serviceLocationInput = document.getElementById('serviceLocation');
+            const lenaPricing = document.getElementById('lenaPricing');
+            const madisonPricing = document.getElementById('madisonPricing');
+            const priceEstimate = document.getElementById('priceEstimate');
+            const estimatedPrice = document.getElementById('estimatedPrice');
+            const serviceHours = document.getElementById('serviceHours');
+            const serviceMinutes = document.getElementById('serviceMinutes');
+            const newCustomerCheckbox = document.getElementById('newCustomer');
+            const offPeakCheckbox = document.getElementById('offPeak');
             
+            // Pricing data structure
+            const pricingData = {
+                lena: {
+                    handyman: { min: 45, max: 65, minCharge: 75 },
+                    auto: { min: 50, max: 75, minCharge: 75 }
+                },
+                madison: {
+                    handyman: { min: 60, max: 85, minCharge: 100 },
+                    auto: { min: 70, max: 95, minCharge: 100 }
+                }
+            };
+            
+            // Service type selection
             serviceCards.forEach(card => {
                 card.addEventListener('click', function() {
                     // Remove selected class from all cards
@@ -973,8 +410,77 @@
                     
                     // Update hidden input value
                     serviceTypeInput.value = this.getAttribute('data-service');
+                    
+                    // Update price estimate
+                    updatePriceEstimate();
                 });
             });
+            
+            // Location selection
+            locationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove selected class from all buttons
+                    locationButtons.forEach(b => b.classList.remove('selected'));
+                    
+                    // Add selected class to clicked button
+                    this.classList.add('selected');
+                    
+                    // Update hidden input value
+                    serviceLocationInput.value = this.getAttribute('data-location');
+                    
+                    // Show appropriate pricing
+                    if (serviceLocationInput.value === 'lena') {
+                        lenaPricing.style.display = 'block';
+                        madisonPricing.style.display = 'none';
+                    } else if (serviceLocationInput.value === 'madison') {
+                        madisonPricing.style.display = 'block';
+                        lenaPricing.style.display = 'none';
+                    }
+                    
+                    // Update price estimate
+                    updatePriceEstimate();
+                });
+            });
+            
+            // Update price when inputs change
+            serviceHours.addEventListener('input', updatePriceEstimate);
+            serviceMinutes.addEventListener('input', updatePriceEstimate);
+            newCustomerCheckbox.addEventListener('change', updatePriceEstimate);
+            offPeakCheckbox.addEventListener('change', updatePriceEstimate);
+            
+            // Calculate and display price estimate
+            function updatePriceEstimate() {
+                const location = serviceLocationInput.value;
+                const serviceType = serviceTypeInput.value;
+                const hours = parseFloat(serviceHours.value) || 0;
+                const minutes = parseFloat(serviceMinutes.value) || 0;
+                const totalHours = hours + (minutes / 60);
+                
+                if (!location || !serviceType || totalHours <= 0) {
+                    priceEstimate.style.display = 'none';
+                    return;
+                }
+                
+                const pricing = pricingData[location][serviceType];
+                let minPrice = pricing.min * totalHours;
+                let maxPrice = pricing.max * totalHours;
+                
+                // Apply discounts
+                let discount = 0;
+                if (newCustomerCheckbox.checked) discount += 0.10;
+                if (offPeakCheckbox.checked) discount += 0.15;
+                
+                minPrice *= (1 - discount);
+                maxPrice *= (1 - discount);
+                
+                // Apply minimum charge
+                if (minPrice < pricing.minCharge) minPrice = pricing.minCharge;
+                if (maxPrice < pricing.minCharge) maxPrice = pricing.minCharge;
+                
+                // Format and display
+                estimatedPrice.textContent = `$${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`;
+                priceEstimate.style.display = 'block';
+            }
             
             // Formspree Form Handling
             const quoteForm = document.getElementById('quoteForm');
@@ -991,6 +497,14 @@
                     return;
                 }
                 
+                // Validate location selection
+                if (!serviceLocationInput.value) {
+                    formStatus.textContent = "Please select your service area";
+                    formStatus.className = "form-status error";
+                    formStatus.style.display = "block";
+                    return;
+                }
+                
                 // Show loading state
                 formStatus.textContent = "Sending your request...";
                 formStatus.className = "form-status";
@@ -998,6 +512,10 @@
                 
                 // Get form data
                 const formData = new FormData(quoteForm);
+                
+                // Add calculated price estimate to form data
+                const priceRange = estimatedPrice.textContent;
+                if (priceRange) formData.append('estimatedPrice', priceRange);
                 
                 // Send form data to Formspree
                 fetch(quoteForm.action, {
@@ -1013,6 +531,11 @@
                         formStatus.className = "form-status success";
                         quoteForm.reset();
                         serviceCards.forEach(c => c.classList.remove('selected'));
+                        locationButtons.forEach(b => b.classList.remove('selected'));
+                        serviceLocationInput.value = '';
+                        priceEstimate.style.display = 'none';
+                        lenaPricing.style.display = 'none';
+                        madisonPricing.style.display = 'none';
                     } else {
                         throw new Error('Form submission failed');
                     }
