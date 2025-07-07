@@ -870,7 +870,7 @@
         </div>
     </footer>
 
-    <script>
+   <script>
     // Initialize Google Map
     function initMap() {
         // Set coordinates for new center point
@@ -1003,51 +1003,48 @@
         });
     }
     
-    // ... rest of the script remains the same ...
-</script>
+    // Check if location is within service area
+    function checkServiceAvailability() {
+        const address = document.getElementById("locationInput").value;
+        const resultDiv = document.getElementById("availabilityResult");
         
-        // Check if location is within service area
-        function checkServiceAvailability() {
-            const address = document.getElementById("locationInput").value;
-            const resultDiv = document.getElementById("availabilityResult");
-            
-            if (!address) {
-                resultDiv.textContent = "Please enter an address or zip code.";
-                resultDiv.className = "";
-                return;
-            }
-            
-            // For demo purposes - in a real app, this would use geocoding
-            // and distance calculations to Lena/Madison
-            const isAvailable = Math.random() > 0.3;
-            
-            if (isAvailable) {
-                resultDiv.innerHTML = '<i class="fas fa-check-circle"></i> Great news! We service your area.';
-                resultDiv.className = "available";
-            } else {
-                resultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Currently, we don\'t service your area. Contact us for special arrangements.';
-                resultDiv.className = "unavailable";
-            }
+        if (!address) {
+            resultDiv.textContent = "Please enter an address or zip code.";
+            resultDiv.className = "";
+            return;
         }
         
-        // Initialize the map when the window loads
-        window.onload = function() {
-            initMap();
-            
-            // Add event listeners
-            document.getElementById("checkLocationBtn").addEventListener("click", checkServiceAvailability);
-            
-            // Allow Enter key to trigger location check
-            document.getElementById("locationInput").addEventListener("keypress", function(e) {
-                if (e.key === "Enter") {
-                    checkServiceAvailability();
-                }
-            });
-            
-            // Add current year to footer
-            const currentYear = new Date().getFullYear();
-            document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
-        };
-    </script>
+        // For demo purposes - in a real app, this would use geocoding
+        // and distance calculations to Lena/Madison
+        const isAvailable = Math.random() > 0.3;
+        
+        if (isAvailable) {
+            resultDiv.innerHTML = '<i class="fas fa-check-circle"></i> Great news! We service your area.';
+            resultDiv.className = "available";
+        } else {
+            resultDiv.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Currently, we don\'t service your area. Contact us for special arrangements.';
+            resultDiv.className = "unavailable";
+        }
+    }
+    
+    // Initialize the map when the window loads
+    window.onload = function() {
+        initMap();
+        
+        // Add event listeners
+        document.getElementById("checkLocationBtn").addEventListener("click", checkServiceAvailability);
+        
+        // Allow Enter key to trigger location check
+        document.getElementById("locationInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                checkServiceAvailability();
+            }
+        });
+        
+        // Add current year to footer
+        const currentYear = new Date().getFullYear();
+        document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
+    };
+</script>
 </body>
 </html>
