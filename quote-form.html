@@ -80,6 +80,7 @@
         .logo img {
             max-height: 80px;
             max-width: 80px;
+            object-fit: contain;
         }
 
         .logo:hover {
@@ -699,6 +700,7 @@
             margin-top: 25px;
             border-left: 4px solid var(--secondary);
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: none; /* Hidden until zip code entered */
         }
         
         .pricing-info h4 {
@@ -737,30 +739,6 @@
             margin-left: 10px;
         }
         
-        .location-toggle {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .location-btn {
-            flex: 1;
-            text-align: center;
-            padding: 12px;
-            background: rgba(248, 249, 250, 0.8);
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid #ddd;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-        
-        .location-btn.selected {
-            border-color: var(--primary);
-            background: rgba(10, 74, 111, 0.1);
-            box-shadow: 0 3px 10px rgba(10,74,111,0.1);
-        }
-        
         .estimate-display {
             background: var(--primary);
             color: white;
@@ -778,24 +756,47 @@
             color: var(--gold);
         }
         
-        .service-duration {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .duration-input {
-            flex: 1;
+        .service-hours {
+            width: 100px;
             padding: 12px 15px;
             border: 2px solid #ddd;
             border-radius: 10px;
             font-size: 1rem;
         }
+
+        .zip-code-input {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
         
-        .duration-label {
+        .zip-code-input input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .zip-code-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 10px;
+            cursor: pointer;
             font-weight: 600;
-            white-space: nowrap;
+            transition: var(--transition);
+        }
+        
+        .zip-code-input button:hover {
+            background: #083a5a;
+        }
+
+        .service-duration-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         /* Responsive Design */
@@ -893,17 +894,17 @@
                 padding: 30px 20px;
             }
             
-            .location-toggle {
+            .zip-code-input {
                 flex-direction: column;
             }
             
-            .service-duration {
+            .zip-code-input button {
+                padding: 15px;
+            }
+            
+            .service-duration-group {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-            
-            .duration-input {
-                width: 100%;
             }
         }
     </style>
@@ -914,7 +915,7 @@
         <div class="header-container">
             <div class="logo-container">
                 <div class="logo">
-                    <img src="https://via.placeholder.com/150/0a4a6f/ffffff?text=S" alt="Sato's All Trade Solutions">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
                 </div>
                 <div class="logo-text">
                     <h1>Sato's All Trade Solutions</h1>
@@ -979,17 +980,17 @@
                             <input type="text" id="address" name="address" required>
                         </div>
                         
-                        <!-- Location Selection -->
+                        <!-- Zip Code Input -->
                         <div class="form-group">
-                            <label>Service Area *</label>
-                            <div class="location-toggle">
-                                <div class="location-btn" data-location="lena">Lena, IL Area</div>
-                                <div class="location-btn" data-location="madison">Madison, WI Area</div>
+                            <label for="zipCode">Zip Code *</label>
+                            <div class="zip-code-input">
+                                <input type="text" id="zipCode" name="zipCode" placeholder="Enter your zip code" required maxlength="5">
+                                <button type="button" id="checkZipBtn">Check</button>
                             </div>
-                            <input type="hidden" id="serviceLocation" name="serviceLocation" required>
+                            <div id="zipCodeStatus" class="form-status"></div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" id="serviceTypeGroup" style="display:none;">
                             <label for="serviceType">Service Type *</label>
                             <div class="service-type">
                                 <div class="service-card" data-service="handyman">
@@ -1005,18 +1006,16 @@
                         </div>
                         
                         <!-- Service Duration -->
-                        <div class="form-group">
-                            <label>Estimated Service Duration</label>
-                            <div class="service-duration">
-                                <span class="duration-label">Hours:</span>
-                                <input type="number" id="serviceHours" name="serviceHours" min="1" max="8" value="1" class="duration-input">
-                                <span class="duration-label">Minutes:</span>
-                                <input type="number" id="serviceMinutes" name="serviceMinutes" min="0" max="59" value="0" class="duration-input">
+                        <div class="form-group" id="durationGroup" style="display:none;">
+                            <label>Estimated Service Duration (Hours)</label>
+                            <div class="service-duration-group">
+                                <input type="number" id="serviceHours" name="serviceHours" min="1" max="8" value="1" class="service-hours">
+                                <span>hours</span>
                             </div>
                         </div>
                         
                         <!-- Pricing Information -->
-                        <div class="pricing-info">
+                        <div class="pricing-info" id="pricingInfo">
                             <h4><i class="fas fa-tag"></i> Transparent Pricing</h4>
                             
                             <div id="lenaPricing" style="display:none;">
@@ -1052,24 +1051,19 @@
                                     <span class="price-amount">$100</span>
                                 </div>
                                 <div class="price-range">
-                                    <span class="price-label">Off-Peak Discount (Weekdays before 3 PM):</span>
-                                    <span class="price-amount">15% OFF</span>
+                                    <span class="price-label">Off-Peak Discount:</span>
+                                    <span class="price-amount">15% OFF (Weekdays before 3 PM)</span>
                                 </div>
                             </div>
                             
                             <div class="estimate-display" id="priceEstimate">
                                 <p>Estimated Price Range:</p>
                                 <div class="estimate-price" id="estimatedPrice">$0.00</div>
-                                <p><small>Includes discounts. Final quote may vary based on project details.</small></p>
+                                <p><small>Includes discounts. Does not include parts. Final quote may vary based on project details.</small></p>
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="projectDetails">Project Details *</label>
-                            <textarea id="projectDetails" name="projectDetails" required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
+                        <div class="form-group" id="discountGroup" style="display:none;">
                             <div class="form-row">
                                 <div>
                                     <input type="checkbox" id="newCustomer" name="newCustomer" checked>
@@ -1082,7 +1076,12 @@
                             </div>
                         </div>
                         
-                        <button type="submit" class="submit-btn">
+                        <div class="form-group" id="projectDetailsGroup" style="display:none;">
+                            <label for="projectDetails">Project Details *</label>
+                            <textarea id="projectDetails" name="projectDetails" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" style="display:none;" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Submit Request
                         </button>
                         
@@ -1107,7 +1106,6 @@
                             <li>Priority scheduling for quote recipients</li>
                             <li>Expert consultation included</li>
                             <li>Response within 24 hours</li>
-                            <li>Geographically-based fair pricing</li>
                             <li>First-time customer discounts</li>
                             <li>Off-peak hour savings</li>
                         </ul>
@@ -1128,7 +1126,7 @@
         <div class="footer-content">
             <div class="footer-logo-column">
                 <div class="footer-logo">
-                    <img src="https://via.placeholder.com/150/0a4a6f/ffffff?text=S" alt="Sato's All Trade Solutions">
+                    <img src="SATOS-LOGO-RGB_01.png" alt="Sato's All Trade Solutions">
                 </div>
                 <div class="slogan">Precision, Care, and Expertise in Every Repair</div>
                 <div class="tagline">From Homes to Wheels, We Fix It All with Precision and Care</div>
@@ -1168,24 +1166,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             const serviceCards = document.querySelectorAll('.service-card');
             const serviceTypeInput = document.getElementById('serviceType');
-            const locationButtons = document.querySelectorAll('.location-btn');
-            const serviceLocationInput = document.getElementById('serviceLocation');
             const lenaPricing = document.getElementById('lenaPricing');
             const madisonPricing = document.getElementById('madisonPricing');
             const priceEstimate = document.getElementById('priceEstimate');
             const estimatedPrice = document.getElementById('estimatedPrice');
             const serviceHours = document.getElementById('serviceHours');
-            const serviceMinutes = document.getElementById('serviceMinutes');
             const newCustomerCheckbox = document.getElementById('newCustomer');
             const offPeakCheckbox = document.getElementById('offPeak');
+            const checkZipBtn = document.getElementById('checkZipBtn');
+            const zipCodeInput = document.getElementById('zipCode');
+            const zipCodeStatus = document.getElementById('zipCodeStatus');
+            const pricingInfo = document.getElementById('pricingInfo');
+            const serviceTypeGroup = document.getElementById('serviceTypeGroup');
+            const durationGroup = document.getElementById('durationGroup');
+            const discountGroup = document.getElementById('discountGroup');
+            const projectDetailsGroup = document.getElementById('projectDetailsGroup');
+            const submitBtn = document.getElementById('submitBtn');
             
             // Pricing data structure
             const pricingData = {
                 lena: {
+                    zipStart: 61000,
+                    zipEnd: 61099,
                     handyman: { min: 45, max: 65, minCharge: 75 },
                     auto: { min: 50, max: 75, minCharge: 75 }
                 },
                 madison: {
+                    zipStart: 53700,
+                    zipEnd: 53799,
                     handyman: { min: 60, max: 85, minCharge: 100 },
                     auto: { min: 70, max: 95, minCharge: 100 }
                 }
@@ -1208,59 +1216,84 @@
                 });
             });
             
-            // Location selection
-            locationButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove selected class from all buttons
-                    locationButtons.forEach(b => b.classList.remove('selected'));
-                    
-                    // Add selected class to clicked button
-                    this.classList.add('selected');
-                    
-                    // Update hidden input value
-                    serviceLocationInput.value = this.getAttribute('data-location');
-                    
-                    // Show appropriate pricing
-                    if (serviceLocationInput.value === 'lena') {
-                        lenaPricing.style.display = 'block';
-                        madisonPricing.style.display = 'none';
-                    } else if (serviceLocationInput.value === 'madison') {
-                        madisonPricing.style.display = 'block';
-                        lenaPricing.style.display = 'none';
-                    }
-                    
-                    // Update price estimate
-                    updatePriceEstimate();
-                });
+            // Check zip code button
+            checkZipBtn.addEventListener('click', function() {
+                const zipCode = zipCodeInput.value.trim();
+                
+                if (!zipCode || isNaN(zipCode) {
+                    zipCodeStatus.textContent = "Please enter a valid zip code";
+                    zipCodeStatus.className = "form-status error";
+                    zipCodeStatus.style.display = "block";
+                    return;
+                }
+                
+                const zipNum = parseInt(zipCode);
+                let location = null;
+                
+                // Check if zip code matches our service areas
+                if (zipNum >= pricingData.lena.zipStart && zipNum <= pricingData.lena.zipEnd) {
+                    location = 'lena';
+                    zipCodeStatus.textContent = "Great! We serve the Lena, IL area";
+                } else if (zipNum >= pricingData.madison.zipStart && zipNum <= pricingData.madison.zipEnd) {
+                    location = 'madison';
+                    zipCodeStatus.textContent = "Great! We serve the Madison, WI area";
+                } else {
+                    zipCodeStatus.textContent = "Sorry, we don't currently serve this area";
+                    zipCodeStatus.className = "form-status error";
+                    zipCodeStatus.style.display = "block";
+                    return;
+                }
+                
+                zipCodeStatus.className = "form-status success";
+                zipCodeStatus.style.display = "block";
+                
+                // Show pricing information
+                pricingInfo.style.display = 'block';
+                
+                // Show appropriate pricing
+                if (location === 'lena') {
+                    lenaPricing.style.display = 'block';
+                    madisonPricing.style.display = 'none';
+                } else if (location === 'madison') {
+                    madisonPricing.style.display = 'block';
+                    lenaPricing.style.display = 'none';
+                }
+                
+                // Show form sections
+                serviceTypeGroup.style.display = 'block';
+                durationGroup.style.display = 'block';
+                discountGroup.style.display = 'block';
+                projectDetailsGroup.style.display = 'block';
+                submitBtn.style.display = 'flex';
+                
+                // Store location in data attribute for calculations
+                pricingInfo.dataset.location = location;
             });
             
             // Update price when inputs change
             serviceHours.addEventListener('input', updatePriceEstimate);
-            serviceMinutes.addEventListener('input', updatePriceEstimate);
             newCustomerCheckbox.addEventListener('change', updatePriceEstimate);
             offPeakCheckbox.addEventListener('change', updatePriceEstimate);
             
             // Calculate and display price estimate
             function updatePriceEstimate() {
-                const location = serviceLocationInput.value;
+                const location = pricingInfo.dataset.location;
                 const serviceType = serviceTypeInput.value;
                 const hours = parseFloat(serviceHours.value) || 0;
-                const minutes = parseFloat(serviceMinutes.value) || 0;
-                const totalHours = hours + (minutes / 60);
                 
-                if (!location || !serviceType || totalHours <= 0) {
+                if (!location || !serviceType || hours <= 0) {
                     priceEstimate.style.display = 'none';
                     return;
                 }
                 
                 const pricing = pricingData[location][serviceType];
-                let minPrice = pricing.min * totalHours;
-                let maxPrice = pricing.max * totalHours;
+                let minPrice = pricing.min * hours;
+                let maxPrice = pricing.max * hours;
                 
                 // Apply discounts
                 let discount = 0;
                 if (newCustomerCheckbox.checked) discount += 0.10;
-                if (offPeakCheckbox.checked && location === 'madison') discount += 0.15;
+                if (offPeakCheckbox.checked) discount += 0.15;
                 
                 minPrice *= (1 - discount);
                 maxPrice *= (1 - discount);
@@ -1289,9 +1322,9 @@
                     return;
                 }
                 
-                // Validate location selection
-                if (!serviceLocationInput.value) {
-                    formStatus.textContent = "Please select your service area";
+                // Validate zip code
+                if (!zipCodeInput.value) {
+                    formStatus.textContent = "Please enter your zip code";
                     formStatus.className = "form-status error";
                     formStatus.style.display = "block";
                     return;
@@ -1323,11 +1356,14 @@
                         formStatus.className = "form-status success";
                         quoteForm.reset();
                         serviceCards.forEach(c => c.classList.remove('selected'));
-                        locationButtons.forEach(b => b.classList.remove('selected'));
-                        serviceLocationInput.value = '';
                         priceEstimate.style.display = 'none';
-                        lenaPricing.style.display = 'none';
-                        madisonPricing.style.display = 'none';
+                        pricingInfo.style.display = 'none';
+                        serviceTypeGroup.style.display = 'none';
+                        durationGroup.style.display = 'none';
+                        discountGroup.style.display = 'none';
+                        projectDetailsGroup.style.display = 'none';
+                        submitBtn.style.display = 'none';
+                        zipCodeStatus.style.display = 'none';
                     } else {
                         throw new Error('Form submission failed');
                     }
