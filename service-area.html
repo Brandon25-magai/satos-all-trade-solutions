@@ -874,10 +874,12 @@
         // Initialize Google Map
         function initMap() {
             // Set coordinates for Lena, IL
-            const lena = { lat: 42.379, lng: -89.822 };
+           const mapCenter = { lat: 43.05, lng: -89.35 };
             
             // Create the map
-            const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
+         const map = new google.maps.Map(document.getElementById("serviceAreaMap"), {
+    zoom: 9,
+    center: mapCenter,
                 zoom: 9,
                 center: lena,
                 styles: [
@@ -944,7 +946,17 @@
                     url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
                 },
             });
-            
+
+            // Add marker for Fitchburg, WI
+const fitchburg = { lat: 43.002, lng: -89.424 };
+new google.maps.Marker({
+    position: fitchburg,
+    map: map,
+    title: "Fitchburg, WI - Service Area",
+    icon: {
+        url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+    },
+});
             // Draw service areas
             // Standard service area (25 miles from Lena)
             const standardCircle = new google.maps.Circle({
