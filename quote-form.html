@@ -1065,7 +1065,7 @@
                         <div class="form-group" id="discountGroup" style="display:none;">
                             <div class="form-row">
                                 <div>
-                                    <input type="checkbox" id="newCustomer" name="newCustomer" checked>
+                                    <input type="checkbox" id="newCustomer" name="newCustomer">
                                     <label for="newCustomer">I'm a new customer (10% discount)</label>
                                 </div>
                                 <div>
@@ -1182,7 +1182,7 @@
         const projectDetailsGroup = document.getElementById('projectDetailsGroup');
         const submitBtn = document.getElementById('submitBtn');
         
-        // Pricing data structure - FIXED: Added proper zip code ranges
+        // Pricing data structure
         const pricingData = {
             lena: {
                 zipStart: 61000,
@@ -1208,7 +1208,7 @@
             });
         });
         
-        // Check zip code button - FIXED: Added proper event binding
+        // Check zip code button
         checkZipBtn.addEventListener('click', checkZipCode);
         
         // Allow Enter key to trigger zip code check
@@ -1231,7 +1231,7 @@
             const zipNum = parseInt(zipCode);
             let location = null;
             
-            // FIXED: Proper zip code range checking
+            // Proper zip code range checking
             if (zipNum >= pricingData.lena.zipStart && zipNum <= pricingData.lena.zipEnd) {
                 location = 'lena';
                 showZipStatus("Great! We serve the Lena, IL area", "success");
@@ -1286,7 +1286,7 @@
         newCustomerCheckbox.addEventListener('change', updatePriceEstimate);
         offPeakCheckbox.addEventListener('change', updatePriceEstimate);
         
-        // Calculate and display price estimate - FIXED: Added proper calculation
+        // Calculate and display price estimate
         function updatePriceEstimate() {
             const location = pricingInfo.dataset.location;
             const serviceType = serviceTypeInput.value;
@@ -1301,7 +1301,7 @@
             let minPrice = pricing.min * hours;
             let maxPrice = pricing.max * hours;
             
-            // Apply discounts
+            // Apply discounts ONLY if boxes are checked
             let discount = 0;
             if (newCustomerCheckbox.checked) discount += 0.10;
             if (offPeakCheckbox.checked) discount += 0.15;
