@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Quote - Sato's All Trade Solutions</title>
+    <title>Client Management - Sato's All Trade Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -30,6 +30,12 @@
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* Header Banner */
@@ -211,34 +217,54 @@
             font-weight: 300;
         }
 
-        /* Quote Form Section */
-        .quote-section {
-            padding: 80px 5%;
-            background: linear-gradient(to bottom, #f0f5f9, #e4edf5);
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab-button {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
             position: relative;
-            overflow: hidden;
+            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+        }
+        
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .tab-button:hover:not(.active) {
+            background: rgba(10, 74, 111, 0.1);
         }
 
-       .quote-section::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    height: 80%;
-    background: url('https://satosalltradesolutionscom.netlify.app/SATOS-LOGO-RGB_01.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.07;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-}
-        .section-container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Client Management Section */
+        .client-section {
+            padding: 40px 5%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 30px auto;
         }
-
+        
         .section-title {
             text-align: center;
             margin-bottom: 50px;
@@ -265,537 +291,229 @@
             background: var(--secondary);
             border-radius: 3px;
         }
-
-        .form-container {
+        
+        .client-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .filter-group input, .filter-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .client-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
-
-        .form-column {
-            padding: 20px;
+        
+        .client-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(10,74,111,0.1);
         }
-
-        .form-info {
+        
+        .client-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .client-header {
             background: var(--primary);
             color: white;
-            padding: 40px;
-            border-radius: 15px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .form-info h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .form-info h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        .form-info ul {
-            list-style: none;
-            margin: 30px 0;
-        }
-
-        .form-info li {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 20px;
             display: flex;
             align-items: center;
             gap: 15px;
-            font-size: 1.1rem;
-            position: relative;
-            padding-left: 35px;
         }
-
-        .form-info li::before {
-            content: '\f058';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-size: 1.5rem;
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: bold;
         }
-
-        .form-group {
-            margin-bottom: 25px;
+        
+        .client-info {
+            flex: 1;
         }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
+        
+        .client-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .client-email {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .client-details {
+            padding: 20px;
+        }
+        
+        .client-field {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .client-field:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .field-label {
             font-weight: 600;
             color: var(--primary);
-            font-size: 1.1rem;
+            min-width: 120px;
         }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            font-family: 'Raleway', sans-serif;
+        
+        .field-value {
+            flex: 1;
         }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(10, 74, 111, 0.1);
+        
+        .client-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
-
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .service-type {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .service-card {
-            background: rgba(248, 249, 250, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
+        
+        .action-btn {
+            flex: 1;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
+            font-weight: 600;
             transition: var(--transition);
-            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        
+        .email-btn {
+            background: rgba(10, 74, 111, 0.1);
+            color: var(--primary);
         }
-
-        .service-card.selected {
-            border-color: var(--primary);
+        
+        .email-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .call-btn {
+            background: rgba(230, 126, 34, 0.1);
+            color: var(--secondary);
+        }
+        
+        .call-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .sync-section {
             background: rgba(10, 74, 111, 0.05);
-            box-shadow: 0 5px 15px rgba(10,74,111,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
         }
-
-        .service-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .service-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .submit-btn {
+        
+        .sync-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 18px 40px;
+            padding: 15px 40px;
             font-size: 1.2rem;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 12px;
-            margin: 30px auto 0;
             font-family: 'Montserrat', sans-serif;
             box-shadow: 0 5px 15px rgba(10,74,111,0.3);
         }
-
-        .submit-btn:hover {
+        
+        .sync-btn:hover {
             background: #083a5a;
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(10,74,111,0.4);
         }
-
-        .form-status {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            display: none;
-        }
-
-        .form-status.success {
-            background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
-            border: 1px solid rgba(40, 167, 69, 0.3);
-            display: block;
-        }
-
-        .form-status.error {
-            background: rgba(220, 53, 69, 0.1);
-            color: #dc3545;
-            border: 1px solid rgba(220, 53, 69, 0.3);
-            display: block;
-        }
-
-        .emergency-banner {
-            background: rgba(192, 57, 43, 0.1);
-            border: 1px solid rgba(192, 57, 43, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .emergency-banner h4 {
-            color: var(--emergency);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.3rem;
-        }
-
-        .emergency-banner a {
-            color: var(--emergency);
-            font-weight: 700;
-            font-size: 1.4rem;
-            text-decoration: none;
-            display: block;
-            margin-top: 10px;
-        }
-
-        /* Enhanced Footer with Logo Integration */
-        footer {
-            background: linear-gradient(to right, var(--dark), #1a2a3a);
-            color: white;
-            padding: 100px 5% 40px;
-            margin-top: 80px;
-            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
-            position: relative;
-        }
-
-        .footer-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.07;
-            z-index: 1;
-            max-width: 600px;
-            width: 60%;
-            text-align: center;
-        }
-
-        .footer-bg img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
-            margin-bottom: 40px;
-            max-width: 1300px;
-            margin: 50px auto 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-logo-column {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .footer-logo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--secondary);
-            padding: 10px;
-            background: white;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .footer-logo img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .slogan {
-            font-style: italic;
-            color: var(--secondary);
-            font-weight: 500;
-            font-size: 1.3rem;
+        
+        .sync-status {
             margin-top: 15px;
-            line-height: 1.4;
-        }
-
-        .tagline {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            margin-top: 20px;
-            color: var(--gold);
-            font-weight: 600;
-            text-align: center;
-            max-width: 300px;
-            line-height: 1.4;
-        }
-
-        .contact-info, .service-areas {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .contact-info h3, .service-areas h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--secondary);
-            position: relative;
-            padding-bottom: 12px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .contact-info h3::after, .service-areas h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-        }
-
-        .contact-info p, .service-areas p {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-        }
-
-        .contact-info a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
-        }
-
-        .footer-emergency {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            background: rgba(192, 57, 43, 0.3);
-            border-radius: 30px;
-            margin-top: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        .footer-emergency-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .area-badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin-top: 20px;
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 45px;
-            width: 45px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border-radius: 50%;
-            transition: var(--transition);
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        /* New pricing styles */
-        .pricing-info {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 25px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            display: none; /* Hidden until zip code entered */
-        }
-        
-        .pricing-info h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .price-range {
-            display: flex;
-            justify-content: space-between;
-            margin: 8px 0;
-            padding: 8px 12px;
-            background: rgba(248, 249, 250, 0.8);
-            border-radius: 8px;
-        }
-        
-        .price-label {
-            font-weight: 600;
+            font-size: 0.95rem;
             color: var(--dark);
         }
         
-        .price-amount {
-            font-weight: 700;
-            color: var(--primary);
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
         
-        .discount-badge {
-            background: var(--secondary);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-left: 10px;
-        }
-        
-        .estimate-display {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
+        .stat-card {
+            background: white;
             border-radius: 10px;
+            padding: 25px;
             text-align: center;
-            margin-top: 20px;
-            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(10,74,111,0.1);
         }
         
-        .estimate-price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 10px 0;
-            color: var(--gold);
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 15px 0;
         }
         
-        .service-hours {
-            width: 100px;
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-        }
-
-        .zip-code-input {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .zip-code-input input {
-            flex: 1;
-            padding: 16px 20px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+        .stat-label {
             font-size: 1.1rem;
+            color: var(--dark);
         }
         
-        .zip-code-input button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .zip-code-input button:hover {
-            background: #083a5a;
-        }
-
-        .service-duration-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .stat-icon {
+            font-size: 2.2rem;
+            color: var(--secondary);
         }
 
         /* Responsive Design */
@@ -815,16 +533,16 @@
                 gap: 25px;
             }
             
-            .form-container {
-                grid-template-columns: 1fr;
-            }
-            
             .quote-hero h1 {
                 font-size: 2.5rem;
             }
             
             nav ul {
                 justify-content: center;
+            }
+            
+            .client-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
@@ -842,40 +560,16 @@
                 font-size: 1.2rem;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .service-type {
-                grid-template-columns: 1fr;
-            }
-            
             .section-title h2 {
                 font-size: 2.2rem;
             }
             
-            .footer-content {
+            .tabs {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
             }
             
-            .contact-info h3::after, 
-            .service-areas h3::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .contact-info p, 
-            .service-areas p {
-                justify-content: center;
-            }
-            
-            .footer-bottom {
+            .client-filters {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
             }
         }
 
@@ -889,21 +583,12 @@
                 font-size: 1.7rem;
             }
             
-            .form-container {
-                padding: 30px 20px;
+            .client-grid {
+                grid-template-columns: 1fr;
             }
             
-            .zip-code-input {
+            .client-actions {
                 flex-direction: column;
-            }
-            
-            .zip-code-input button {
-                padding: 15px;
-            }
-            
-            .service-duration-group {
-                flex-direction: column;
-                align-items: flex-start;
             }
         }
     </style>
@@ -925,7 +610,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="quote-form.html" class="active"><i class="fas fa-file-invoice-dollar"></i> Get Quote</a></li>
+                    <li><a href="quote-form.html"><i class="fas fa-file-invoice-dollar"></i> Get Quote</a></li>
+                    <li><a href="client-management.html" class="active"><i class="fas fa-users"></i> Clients</a></li>
                     <li><a href="service-area.html"><i class="fas fa-map-marker-alt"></i> Service Areas</a></li>
                     <li><a href="tel:6086360095" class="emergency-link"><i class="fas fa-phone-alt"></i> Emergency</a></li>
                 </ul>
@@ -936,191 +622,245 @@
     <!-- Hero Section -->
     <section class="quote-hero">
         <div class="hero-content">
-            <h1>Get a Free Quote</h1>
-            <p>Quality Service at Competitive Prices</p>
+            <h1>Client Management</h1>
+            <p>Track and manage all your clients in one place</p>
         </div>
     </section>
 
-    <!-- Quote Form Section -->
-    <section class="quote-section">
-        <div class="section-container">
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="clients">Client Directory</button>
+            <button class="tab-button" data-tab="stats">Business Insights</button>
+            <button class="tab-button" data-tab="sync">Google Sync</button>
+        </div>
+
+        <!-- Client Management Section -->
+        <section class="client-section">
             <div class="section-title">
-                <h2>Request a Quote</h2>
-                <p class="tagline">We'll get back to you within 24 hours</p>
+                <h2>Client Directory</h2>
+                <p>Manage all your current and prospective clients</p>
             </div>
             
-            <div class="form-container">
-                <div class="form-column">
-                    <form id="quoteForm" action="https://formspree.io/f/mrbkvbzb" method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" name="firstName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name *</label>
-                                <input type="text" id="lastName" name="lastName" required>
-                            </div>
+            <div class="client-filters">
+                <div class="filter-group">
+                    <label for="search">Search Clients</label>
+                    <input type="text" id="search" placeholder="Search by name, email, or phone">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="status">Client Status</label>
+                    <select id="status">
+                        <option value="all">All Clients</option>
+                        <option value="active">Active Clients</option>
+                        <option value="prospect">Prospects</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="service">Service Type</label>
+                    <select id="service">
+                        <option value="all">All Services</option>
+                        <option value="handyman">Handyman Services</option>
+                        <option value="auto">Auto Repair</option>
+                        <option value="both">Both Services</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-value">128</div>
+                    <div class="stat-label">Total Clients</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-tools stat-icon"></i>
+                    <div class="stat-value">86</div>
+                    <div class="stat-label">Handyman Clients</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-car stat-icon"></i>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Auto Repair Clients</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-sync stat-icon"></i>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Recently Synced</div>
+                </div>
+            </div>
+            
+            <div class="client-grid">
+                <!-- Client Card 1 -->
+                <div class="client-card">
+                    <div class="client-header">
+                        <div class="client-avatar">JM</div>
+                        <div class="client-info">
+                            <div class="client-name">John Miller</div>
+                            <div class="client-email">john.miller@example.com</div>
                         </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone *</label>
-                                <input type="tel" id="phone" name="phone" required>
-                            </div>
+                    </div>
+                    <div class="client-details">
+                        <div class="client-field">
+                            <div class="field-label">Phone:</div>
+                            <div class="field-value">(555) 123-4567</div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="address">Address *</label>
-                            <input type="text" id="address" name="address" required>
+                        <div class="client-field">
+                            <div class="field-label">Location:</div>
+                            <div class="field-value">Lena, IL</div>
                         </div>
-                        
-                        <!-- Zip Code Input -->
-                        <div class="form-group">
-                            <label for="zipCode">Zip Code *</label>
-                            <div class="zip-code-input">
-                                <input type="text" id="zipCode" name="zipCode" placeholder="Enter your zip code" required maxlength="5">
-                                <button type="button" id="checkZipBtn">Check</button>
-                            </div>
-                            <div id="zipCodeStatus" class="form-status"></div>
+                        <div class="client-field">
+                            <div class="field-label">Services:</div>
+                            <div class="field-value">Handyman, Auto Repair</div>
                         </div>
-                        
-                        <div class="form-group" id="serviceTypeGroup" style="display:none;">
-                            <label for="serviceType">Service Type *</label>
-                            <div class="service-type">
-                                <div class="service-card" data-service="handyman">
-                                    <i class="fas fa-tools"></i>
-                                    <h4>Handyman Services</h4>
-                                </div>
-                                <div class="service-card" data-service="auto">
-                                    <i class="fas fa-car-alt"></i>
-                                    <h4>Auto Repair</h4>
-                                </div>
-                            </div>
-                            <input type="hidden" id="serviceType" name="serviceType" required>
+                        <div class="client-field">
+                            <div class="field-label">Last Service:</div>
+                            <div class="field-value">Oct 15, 2023</div>
                         </div>
-                        
-                        <!-- Service Duration -->
-                        <div class="form-group" id="durationGroup" style="display:none;">
-                            <label>Estimated Service Duration (Hours)</label>
-                            <div class="service-duration-group">
-                                <input type="number" id="serviceHours" name="serviceHours" min="1" max="8" value="1" class="service-hours">
-                                <span>hours</span>
-                            </div>
+                        <div class="client-actions">
+                            <button class="action-btn email-btn">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="action-btn call-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
                         </div>
-                        
-                        <!-- Pricing Information -->
-                        <div class="pricing-info" id="pricingInfo">
-                            <h4><i class="fas fa-tag"></i> Transparent Pricing</h4>
-                            
-                            <div id="lenaPricing" style="display:none;">
-                                <div class="price-range">
-                                    <span class="price-label">Standard Handyman Rate:</span>
-                                    <span class="price-amount">$45 - $65/hour</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">Auto Repair Rate:</span>
-                                    <span class="price-amount">$50 - $75/hour</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">Minimum Charge:</span>
-                                    <span class="price-amount">$75</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">New Customer Discount:</span>
-                                    <span class="price-amount">10% OFF <span class="discount-badge">Applied</span></span>
-                                </div>
-                            </div>
-                            
-                            <div id="madisonPricing" style="display:none;">
-                                <div class="price-range">
-                                    <span class="price-label">Standard Handyman Rate:</span>
-                                    <span class="price-amount">$60 - $85/hour</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">Auto Repair Rate:</span>
-                                    <span class="price-amount">$70 - $95/hour</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">Minimum Charge:</span>
-                                    <span class="price-amount">$100</span>
-                                </div>
-                                <div class="price-range">
-                                    <span class="price-label">Off-Peak Discount:</span>
-                                    <span class="price-amount">15% OFF (Weekdays before 3 PM)</span>
-                                </div>
-                            </div>
-                            
-                            <div class="estimate-display" id="priceEstimate">
-                                <p>Estimated Price Range:</p>
-                                <div class="estimate-price" id="estimatedPrice">$0.00</div>
-                                <p><small>Includes discounts. Does not include parts. Final quote may vary based on project details.</small></p>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group" id="discountGroup" style="display:none;">
-                            <div class="form-row">
-                                <div>
-                                    <input type="checkbox" id="newCustomer" name="newCustomer">
-                                    <label for="newCustomer">I'm a new customer (10% discount)</label>
-                                </div>
-                                <div>
-                                    <input type="checkbox" id="offPeak" name="offPeak">
-                                    <label for="offPeak">I can schedule during off-peak hours (15% discount)</label>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group" id="projectDetailsGroup" style="display:none;">
-                            <label for="projectDetails">Project Details *</label>
-                            <textarea id="projectDetails" name="projectDetails" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn" style="display:none;" id="submitBtn">
-                            <i class="fas fa-paper-plane"></i> Submit Request
-                        </button>
-                        
-                        <div class="form-status" id="formStatus"></div>
-                    </form>
-                    
-                    <div class="emergency-banner">
-                        <h4><i class="fas fa-exclamation-triangle"></i> Emergency Service Needed?</h4>
-                        <p>Call us immediately for urgent assistance</p>
-                        <a href="tel:6086360095">(608) 636-0095</a>
                     </div>
                 </div>
                 
-                <div class="form-column">
-                    <div class="form-info">
-                        <h3>Why Get a Quote?</h3>
-                        <p>Getting a quote is the first step towards solving your repair needs. We provide transparent pricing and detailed service plans.</p>
-                        
-                        <ul>
-                            <li>Transparent pricing with no hidden fees</li>
-                            <li>Free estimates for all services</li>
-                            <li>Priority scheduling for quote recipients</li>
-                            <li>Expert consultation included</li>
-                            <li>Response within 24 hours</li>
-                            <li>First-time customer discounts</li>
-                            <li>Off-peak hour savings</li>
-                        </ul>
-                        
-                        <p>Our team will contact you to discuss your project details and provide a comprehensive quote tailored to your specific needs.</p>
+                <!-- Client Card 2 -->
+                <div class="client-card">
+                    <div class="client-header">
+                        <div class="client-avatar">SD</div>
+                        <div class="client-info">
+                            <div class="client-name">Sarah Davis</div>
+                            <div class="client-email">sarahd@example.com</div>
+                        </div>
+                    </div>
+                    <div class="client-details">
+                        <div class="client-field">
+                            <div class="field-label">Phone:</div>
+                            <div class="field-value">(555) 987-6543</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Location:</div>
+                            <div class="field-value">Madison, WI</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Services:</div>
+                            <div class="field-value">Auto Repair</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Last Service:</div>
+                            <div class="field-value">Sep 28, 2023</div>
+                        </div>
+                        <div class="client-actions">
+                            <button class="action-btn email-btn">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="action-btn call-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client Card 3 -->
+                <div class="client-card">
+                    <div class="client-header">
+                        <div class="client-avatar">RJ</div>
+                        <div class="client-info">
+                            <div class="client-name">Robert Johnson</div>
+                            <div class="client-email">robert.j@example.com</div>
+                        </div>
+                    </div>
+                    <div class="client-details">
+                        <div class="client-field">
+                            <div class="field-label">Phone:</div>
+                            <div class="field-value">(555) 456-7890</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Location:</div>
+                            <div class="field-value">Lena, IL</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Services:</div>
+                            <div class="field-value">Handyman</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Last Service:</div>
+                            <div class="field-value">Oct 5, 2023</div>
+                        </div>
+                        <div class="client-actions">
+                            <button class="action-btn email-btn">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="action-btn call-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Client Card 4 -->
+                <div class="client-card">
+                    <div class="client-header">
+                        <div class="client-avatar">ET</div>
+                        <div class="client-info">
+                            <div class="client-name">Emily Thompson</div>
+                            <div class="client-email">emilyt@example.com</div>
+                        </div>
+                    </div>
+                    <div class="client-details">
+                        <div class="client-field">
+                            <div class="field-label">Phone:</div>
+                            <div class="field-value">(555) 234-5678</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Location:</div>
+                            <div class="field-value">Madison, WI</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Services:</div>
+                            <div class="field-value">Handyman, Auto Repair</div>
+                        </div>
+                        <div class="client-field">
+                            <div class="field-label">Last Service:</div>
+                            <div class="field-value">Oct 20, 2023</div>
+                        </div>
+                        <div class="client-actions">
+                            <button class="action-btn email-btn">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="action-btn call-btn">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            
+            <div class="sync-section">
+                <h3>Sync with Google Workspace</h3>
+                <p>Keep your client list updated across all your devices and applications</p>
+                <button class="sync-btn" id="syncButton">
+                    <i class="fas fa-sync"></i> Sync Now
+                </button>
+                <div class="sync-status" id="syncStatus">Last sync: Oct 22, 2023 at 2:45 PM</div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
-       <div class="footer-bg">
-    <img src="https://satosalltradesolutionscom.netlify.app/SATOS-LOGO-RGB_01.png" alt="Sato's Logo Background">
-</div>
+        <div class="footer-bg">
+            <img src="https://satosalltradesolutionscom.netlify.app/SATOS-LOGO-RGB_01.png" alt="Sato's Logo Background">
+        </div>
         
         <div class="footer-content">
             <div class="footer-logo-column">
@@ -1160,231 +900,87 @@
         </div>
     </footer>
 
-  <script>
-    // Initialize service type selection
-    document.addEventListener('DOMContentLoaded', function() {
-        const serviceCards = document.querySelectorAll('.service-card');
-        const serviceTypeInput = document.getElementById('serviceType');
-        const lenaPricing = document.getElementById('lenaPricing');
-        const madisonPricing = document.getElementById('madisonPricing');
-        const priceEstimate = document.getElementById('priceEstimate');
-        const estimatedPrice = document.getElementById('estimatedPrice');
-        const serviceHours = document.getElementById('serviceHours');
-        const newCustomerCheckbox = document.getElementById('newCustomer');
-        const offPeakCheckbox = document.getElementById('offPeak');
-        const checkZipBtn = document.getElementById('checkZipBtn');
-        const zipCodeInput = document.getElementById('zipCode');
-        const zipCodeStatus = document.getElementById('zipCodeStatus');
-        const pricingInfo = document.getElementById('pricingInfo');
-        const serviceTypeGroup = document.getElementById('serviceTypeGroup');
-        const durationGroup = document.getElementById('durationGroup');
-        const discountGroup = document.getElementById('discountGroup');
-        const projectDetailsGroup = document.getElementById('projectDetailsGroup');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        // Pricing data structure
-        const pricingData = {
-            lena: {
-                zipStart: 61000,
-                zipEnd: 61099,
-                handyman: { min: 45, max: 65, minCharge: 75 },
-                auto: { min: 50, max: 75, minCharge: 75 }
-            },
-            madison: {
-                zipStart: 53700,
-                zipEnd: 53799,
-                handyman: { min: 60, max: 85, minCharge: 100 },
-                auto: { min: 70, max: 95, minCharge: 100 }
-            }
-        };
-        
-        // Service type selection
-        serviceCards.forEach(card => {
-            card.addEventListener('click', function() {
-                serviceCards.forEach(c => c.classList.remove('selected'));
-                this.classList.add('selected');
-                serviceTypeInput.value = this.getAttribute('data-service');
-                updatePriceEstimate();
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const syncButton = document.getElementById('syncButton');
+            const syncStatus = document.getElementById('syncStatus');
+            
+            // Tab switching
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // In a real application, you would show/hide content sections here
+                });
+            });
+            
+            // Google Workspace sync functionality
+            syncButton.addEventListener('click', function() {
+                // Show loading state
+                syncButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Syncing...';
+                syncButton.disabled = true;
+                
+                // Simulate API call to Google Workspace
+                setTimeout(function() {
+                    // Update sync status
+                    const now = new Date();
+                    const options = { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    };
+                    const formattedDate = now.toLocaleDateString('en-US', options);
+                    
+                    syncStatus.textContent = `Last sync: ${formattedDate}`;
+                    syncStatus.style.color = '#28a745';
+                    
+                    // Reset button
+                    syncButton.innerHTML = '<i class="fas fa-sync"></i> Sync Complete!';
+                    
+                    // After a moment, reset to original state
+                    setTimeout(function() {
+                        syncButton.innerHTML = '<i class="fas fa-sync"></i> Sync Now';
+                        syncButton.disabled = false;
+                    }, 2000);
+                }, 2000);
+            });
+            
+            // Filter functionality
+            const searchInput = document.getElementById('search');
+            const statusFilter = document.getElementById('status');
+            const serviceFilter = document.getElementById('service');
+            
+            // In a real application, you would filter the client list based on these inputs
+            [searchInput, statusFilter, serviceFilter].forEach(element => {
+                element.addEventListener('change', function() {
+                    console.log('Filters changed - would filter client list in a real application');
+                });
+            });
+            
+            // Client action buttons
+            document.querySelectorAll('.action-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const clientCard = this.closest('.client-card');
+                    const clientName = clientCard.querySelector('.client-name').textContent;
+                    
+                    if (this.classList.contains('email-btn')) {
+                        console.log(`Would open email client for ${clientName}`);
+                        alert(`Opening email client for ${clientName}`);
+                    } else if (this.classList.contains('call-btn')) {
+                        console.log(`Would call ${clientName}`);
+                        alert(`Calling ${clientName}`);
+                    }
+                });
             });
         });
-        
-        // Check zip code button
-        checkZipBtn.addEventListener('click', checkZipCode);
-        
-        // Allow Enter key to trigger zip code check
-        zipCodeInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                checkZipCode();
-            }
-        });
-        
-        function checkZipCode() {
-            const zipCode = zipCodeInput.value.trim();
-            zipCodeStatus.style.display = "none";
-            
-            if (!zipCode || isNaN(zipCode)) {
-                showZipStatus("Please enter a valid zip code", "error");
-                return;
-            }
-            
-            const zipNum = parseInt(zipCode);
-            let location = null;
-            
-            // Proper zip code range checking
-            if (zipNum >= pricingData.lena.zipStart && zipNum <= pricingData.lena.zipEnd) {
-                location = 'lena';
-                showZipStatus("Great! We serve the Lena, IL area", "success");
-            } else if (zipNum >= pricingData.madison.zipStart && zipNum <= pricingData.madison.zipEnd) {
-                location = 'madison';
-                showZipStatus("Great! We serve the Madison, WI area", "success");
-            } else {
-                showZipStatus("Sorry, we don't currently serve this area", "error");
-                return;
-            }
-            
-            // Show pricing information
-            pricingInfo.style.display = 'block';
-            
-            // Show appropriate pricing
-            lenaPricing.style.display = location === 'lena' ? 'block' : 'none';
-            madisonPricing.style.display = location === 'madison' ? 'block' : 'none';
-            
-            // Store location for calculations
-            pricingInfo.dataset.location = location;
-            
-            // Show form sections
-            serviceTypeGroup.style.display = 'block';
-            durationGroup.style.display = 'block';
-            discountGroup.style.display = 'block';
-            projectDetailsGroup.style.display = 'block';
-            submitBtn.style.display = 'flex';
-        }
-        
-        function showZipStatus(message, type) {
-            zipCodeStatus.textContent = message;
-            zipCodeStatus.className = `form-status ${type}`;
-            zipCodeStatus.style.display = "block";
-            
-            if (type === "error") {
-                hideFormSections();
-            }
-        }
-        
-        function hideFormSections() {
-            serviceTypeGroup.style.display = 'none';
-            durationGroup.style.display = 'none';
-            discountGroup.style.display = 'none';
-            projectDetailsGroup.style.display = 'none';
-            submitBtn.style.display = 'none';
-            pricingInfo.style.display = 'none';
-            priceEstimate.style.display = 'none';
-        }
-        
-        // Update price when inputs change
-        serviceHours.addEventListener('input', updatePriceEstimate);
-        newCustomerCheckbox.addEventListener('change', updatePriceEstimate);
-        offPeakCheckbox.addEventListener('change', updatePriceEstimate);
-        
-        // Calculate and display price estimate
-        function updatePriceEstimate() {
-            const location = pricingInfo.dataset.location;
-            const serviceType = serviceTypeInput.value;
-            const hours = parseFloat(serviceHours.value) || 0;
-            
-            if (!location || !serviceType || hours <= 0) {
-                priceEstimate.style.display = 'none';
-                return;
-            }
-            
-            const pricing = pricingData[location][serviceType];
-            let minPrice = pricing.min * hours;
-            let maxPrice = pricing.max * hours;
-            
-            // Apply discounts ONLY if boxes are checked
-            let discount = 0;
-            if (newCustomerCheckbox.checked) discount += 0.10;
-            if (offPeakCheckbox.checked) discount += 0.15;
-            
-            minPrice *= (1 - discount);
-            maxPrice *= (1 - discount);
-            
-            // Apply minimum charge
-            minPrice = Math.max(minPrice, pricing.minCharge);
-            maxPrice = Math.max(maxPrice, pricing.minCharge);
-            
-            // Format and display
-            estimatedPrice.textContent = `$${minPrice.toFixed(2)} - $${maxPrice.toFixed(2)}`;
-            priceEstimate.style.display = 'block';
-        }
-        
-        // Formspree Form Handling
-        const quoteForm = document.getElementById('quoteForm');
-        const formStatus = document.getElementById('formStatus');
-        
-        quoteForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate service type selection
-            if (!serviceTypeInput.value) {
-                showFormStatus("Please select a service type", "error");
-                return;
-            }
-            
-            // Validate zip code
-            if (!zipCodeInput.value) {
-                showFormStatus("Please enter your zip code", "error");
-                return;
-            }
-            
-            // Show loading state
-            showFormStatus("Sending your request...", "");
-            
-            // Get form data
-            const formData = new FormData(quoteForm);
-            
-            // Add calculated price estimate to form data
-            const priceRange = estimatedPrice.textContent;
-            if (priceRange) formData.append('estimatedPrice', priceRange);
-            
-            // Send form data to Formspree
-            fetch(quoteForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    showFormStatus("Thank you! Your request has been submitted successfully. We'll contact you within 24 hours.", "success");
-                    resetForm();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                showFormStatus("Oops! There was a problem submitting your request. Please try again or call us directly.", "error");
-            });
-        });
-        
-        function showFormStatus(message, type) {
-            formStatus.textContent = message;
-            formStatus.className = type ? `form-status ${type}` : "form-status";
-            formStatus.style.display = "block";
-        }
-        
-        function resetForm() {
-            quoteForm.reset();
-            serviceCards.forEach(c => c.classList.remove('selected'));
-            hideFormSections();
-            zipCodeStatus.style.display = 'none';
-        }
-        
-        // Add current year to footer
-        const currentYear = new Date().getFullYear();
-        document.querySelector('.footer-bottom p').innerHTML = `&copy; ${currentYear} Sato's All Trade Solutions LLC. All Rights Reserved.`;
-    });
-</script>
+    </script>
 </body>
 </html>
