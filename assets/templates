@@ -1,1 +1,62 @@
-
+<header>
+    <div class="top-bar">
+        <div class="container">
+            <p>Contact us: (123) 456-7890 | email@example.com</p>
+        </div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/logo.png" alt="Sato's Solutions Logo" class="nav-logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" id="login-btn">Client Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sato's All Trade Solutions</h3>
+                <p>Professional services for all your residential and commercial needs. Quality work guaranteed.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Business Ave, City, State</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> contact@satossolutions.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Business Hours</h3>
+                <p>Monday-Friday: 8am - 6pm</p>
+                <p>Saturday: 9am - 4pm</p>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Sato's All Trade Solutions. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
